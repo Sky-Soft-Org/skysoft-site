@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sky Soft — Accounting, Reporting &amp; Commerce Platforms</title>
+  <meta name="description" content="Sky Soft builds accounting software, the Sky Reports web platform for accounting, operations and invoicing, and custom marketplace platforms.">
+  <link rel="icon" href="assets/logo-mark.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- ============ HEADER ============ -->
+  <header class="header" id="header">
+    <div class="container">
+      <a href="#top" class="brand" aria-label="Sky Soft">
+        <span class="mark">
+          <svg viewBox="0 0 100 100" aria-hidden="true">
+            <path class="bar" d="M14 34C17 24 25 18 34 18H89C86 28 79 34 71 34Z"/>
+            <path class="bar" d="M14 42H66C76 42 84 49 86 58H32C23 58 15 51 14 42Z"/>
+            <path class="bar" d="M12 82C15 72 23 66 32 66H86C83 76 76 82 68 82Z"/>
+          </svg>
+        </span>
+        <span class="wordmark">Sky<span>Soft</span></span>
+      </a>
+      <nav class="nav" id="nav">
+        <a href="#products" data-i18n="nav.products">Products</a>
+        <a href="#reports" data-i18n="nav.reports">Sky Reports</a>
+        <a href="#marketplace" data-i18n="nav.market">Marketplace</a>
+        <a href="#why" data-i18n="nav.why">Why Sky Soft</a>
+        <a href="#contact" data-i18n="nav.contact">Contact</a>
+      </nav>
+      <div class="actions">
+        <button class="lang-btn" id="langBtn" type="button" aria-label="Switch language">
+          <svg viewBox="0 0 24 24" class="ico"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+          <span id="langLabel">العربية</span>
+        </button>
+        <a href="#contact" class="btn btn-primary btn-sm hide-sm"><span data-i18n="nav.demo">Book a demo</span></a>
+        <button class="menu-btn" id="menuBtn" type="button" aria-label="Menu">
+          <svg viewBox="0 0 24 24" class="ico"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="top">
+      <div class="sky" aria-hidden="true">
+        <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+        <div class="cloud c1"></div><div class="cloud c2"></div><div class="cloud c3"></div>
+        <svg class="swoosh" viewBox="0 0 800 300" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="sg" x1="0" y1="1" x2="1" y2="0">
+              <stop offset="0" stop-color="#3BB2F6" stop-opacity=".0"/>
+              <stop offset=".45" stop-color="#3BB2F6" stop-opacity=".55"/>
+              <stop offset="1" stop-color="#2B6CF2"/>
+            </linearGradient>
+          </defs>
+          <path d="M0 300C260 290 560 220 800 30V300Z" fill="url(#sg)"/>
+          <path class="sw-line" d="M0 270C280 262 540 200 800 0"/>
+          <path class="sw-line l2" d="M60 300C330 280 580 210 800 60"/>
+          <path class="sw-line l3" d="M0 240C300 236 520 170 760 0"/>
+        </svg>
+      </div>
+
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="pill reveal"><span class="dot"></span><span data-i18n="hero.pill">Accounting · Reporting · E‑commerce</span></span>
+          <h1 class="reveal" style="--d:.08s">
+            <span data-i18n="hero.t1">One sky for your</span>
+            <span class="rotator" id="rotator"><span class="w">accounting</span></span>
+          </h1>
+          <p class="lead reveal" style="--d:.16s" data-i18n="hero.lead">Sky Soft builds accounting software, a web platform for accounting, operations and invoicing, and custom marketplaces — so every part of your business works from one clear picture.</p>
+          <div class="hero-cta reveal" style="--d:.24s">
+            <a href="#products" class="btn btn-primary">
+              <span data-i18n="hero.cta1">Explore our products</span>
+              <svg viewBox="0 0 24 24" class="ico arrow"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a href="#contact" class="btn btn-ghost">
+              <span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+              <span data-i18n="hero.cta2">Book a free demo</span>
+            </a>
+          </div>
+          <ul class="hero-trust reveal" style="--d:.32s">
+            <li><svg viewBox="0 0 24 24" class="ico"><path d="M5 12l5 5 9-10"/></svg><span data-i18n="hero.tr1">Arabic &amp; English</span></li>
+            <li><svg viewBox="0 0 24 24" class="ico"><path d="M5 12l5 5 9-10"/></svg><span data-i18n="hero.tr2">Desktop &amp; cloud</span></li>
+            <li><svg viewBox="0 0 24 24" class="ico"><path d="M5 12l5 5 9-10"/></svg><span data-i18n="hero.tr3">Local support team</span></li>
+          </ul>
+        </div>
+
+        <div class="hero-visual" id="heroVisual">
+          <svg class="ghost-s" viewBox="0 0 100 100" aria-hidden="true">
+            <path d="M14 34C17 24 25 18 34 18H89C86 28 79 34 71 34Z"/>
+            <path d="M14 42H66C76 42 84 49 86 58H32C23 58 15 51 14 42Z"/>
+            <path d="M12 82C15 72 23 66 32 66H86C83 76 76 82 68 82Z"/>
+          </svg>
+
+          <div class="window dash">
+            <div class="win-bar"><i></i><i></i><i></i><span class="url">reports.skysoft.app</span></div>
+            <div class="dash-body">
+              <aside class="dash-side">
+                <svg viewBox="0 0 100 100" class="side-mark"><path d="M14 34C17 24 25 18 34 18H89C86 28 79 34 71 34Z"/><path d="M14 42H66C76 42 84 49 86 58H32C23 58 15 51 14 42Z"/><path d="M12 82C15 72 23 66 32 66H86C83 76 76 82 68 82Z"/></svg>
+                <span class="on"></span><span></span><span></span><span></span><span></span>
+              </aside>
+              <div class="dash-main">
+                <div class="dash-head"><b data-i18n="dash.title">Overview</b><span class="chip">2026</span></div>
+                <div class="kpis">
+                  <div class="kpi"><small data-i18n="dash.sales">Sales</small><strong data-count="284500">0</strong><em>▲ 12.4%</em></div>
+                  <div class="kpi"><small data-i18n="dash.exp">Expenses</small><strong data-count="96120">0</strong><em class="neutral">▼ 3.1%</em></div>
+                  <div class="kpi"><small data-i18n="dash.net">Net profit</small><strong data-count="188380">0</strong><em>▲ 18.9%</em></div>
+                </div>
+                <div class="chart">
+                  <div class="chart-head"><small data-i18n="dash.chart">Monthly revenue</small><span class="legend"><i></i>2026</span></div>
+                  <div class="bars">
+                    <span style="--h:38%;--i:0"></span><span style="--h:52%;--i:1"></span><span style="--h:44%;--i:2"></span>
+                    <span style="--h:61%;--i:3"></span><span style="--h:56%;--i:4"></span><span style="--h:72%;--i:5"></span>
+                    <span style="--h:66%;--i:6"></span><span style="--h:80%;--i:7"></span><span style="--h:74%;--i:8"></span>
+                    <span style="--h:88%;--i:9"></span><span style="--h:83%;--i:10"></span><span style="--h:97%;--i:11"></span>
+                  </div>
+                  <svg class="line" viewBox="0 0 300 100" preserveAspectRatio="none"><path d="M0 78C25 70 40 60 55 64S85 52 105 50 135 44 160 38 195 34 215 26 260 22 300 6"/></svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="float f1" style="--depth:22">
+            <div class="bob">
+              <span class="ic ok"><svg viewBox="0 0 24 24" class="ico"><path d="M6 3h9l4 4v14H6z"/><path d="M9 13l2 2 4-4"/></svg></span>
+              <div><b data-i18n="float.inv">Invoice INV‑1042</b><small data-i18n="float.paid">Paid just now</small></div>
+            </div>
+          </div>
+          <div class="float f2" style="--depth:30">
+            <div class="bob">
+              <span class="ic pink"><svg viewBox="0 0 24 24" class="ico"><circle cx="9" cy="20" r="1.5"/><circle cx="17" cy="20" r="1.5"/><path d="M3 4h2l2.5 11h11L21 7H6.5"/></svg></span>
+              <div><b data-i18n="float.order">New order +1</b><small data-i18n="float.store">Sky Wear online store</small></div>
+            </div>
+          </div>
+          <div class="float f3" style="--depth:16">
+            <div class="bob">
+              <span class="ic blue"><svg viewBox="0 0 24 24" class="ico"><path d="M3 8l9-5 9 5v10l-9 5-9-5z"/><path d="M3 8l9 5 9-5M12 13v10"/></svg></span>
+              <div><b data-i18n="float.stock">Stock synced</b><small data-i18n="float.wh">3 warehouses · live</small></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ STATS (placeholder figures) ============ -->
+    <section class="stats">
+      <div class="container">
+        <div class="stats-card reveal">
+          <!-- PLACEHOLDER numbers: replace with real figures -->
+          <div class="stat"><strong data-count="1200" data-prefix="+">0</strong><span data-i18n="stat.clients">Businesses served</span></div>
+          <div class="stat"><strong data-count="15" data-suffix="+">0</strong><span data-i18n="stat.years">Years of experience</span></div>
+          <div class="stat"><strong data-count="3">0</strong><span data-i18n="stat.platforms">Connected platforms</span></div>
+          <div class="stat"><strong>24/7</strong><span data-i18n="stat.support">Support &amp; updates</span></div>
+        </div>
+      </div>
+      <div class="marquee">
+        <p class="m-label" data-i18n="marquee.label">Serving businesses across industries</p>
+        <div class="track-wrap"><div class="track" id="track"></div></div>
+      </div>
+    </section>
+
+    <!-- ============ PRODUCTS ============ -->
+    <section class="block" id="products">
+      <div class="container">
+        <div class="head reveal">
+          <span class="eyebrow" data-i18n="prod.eyebrow">Our products</span>
+          <h2 data-i18n="prod.title">Three platforms. One connected business.</h2>
+          <p class="sub" data-i18n="prod.sub">Start with the solution you need today and add the rest as you grow — everything works together.</p>
+        </div>
+
+        <div class="products-grid">
+          <!-- Desktop -->
+          <article class="pcard reveal">
+            <div class="pvis">
+              <div class="mini-win desk">
+                <div class="mw-title"><i></i><i></i><i></i></div>
+                <div class="mw-menu"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+                <div class="mw-body">
+                  <div class="mw-main">
+                    <svg viewBox="0 0 100 100" class="mw-logo"><path d="M14 34C17 24 25 18 34 18H89C86 28 79 34 71 34Z"/><path d="M14 42H66C76 42 84 49 86 58H32C23 58 15 51 14 42Z"/><path d="M12 82C15 72 23 66 32 66H86C83 76 76 82 68 82Z"/></svg>
+                    <div class="mw-swoosh"></div>
+                  </div>
+                  <div class="mw-side"><b></b><span></span><span></span><span></span><span></span><span></span><span></span></div>
+                </div>
+              </div>
+            </div>
+            <div class="pbody">
+              <span class="ptag" data-i18n="p1.tag">Desktop software</span>
+              <h3 data-i18n="p1.title">Sky Soft Accounting</h3>
+              <p data-i18n="p1.desc">A complete accounting and inventory system for your office — invoices, receipts, warehouses and full financial reports.</p>
+              <ul class="feat">
+                <li><svg viewBox="0 0 24 24" class="ico"><path d="M5 12l5 5 9-10"/></svg><span data-i18n="p1.f1">Sales &amp; purchase invoicing</span></li>
+                <li><svg viewBox="0 0 24 24" class="ico"><path d="M5 12l5 5 9-10"/></svg><span data-i18n="p1.f2">Multi-warehouse inventory &amp; transfers</span></li>
+                <li><svg viewBox="0 0 24 24" class="ico"><path d="M5 12l5 5 9-10"/></svg><span data-i18n="p1.f3">Customers, suppliers &amp; cash boxes</span></li>
+                <li><svg viewBox="0 0 24 24" class="ico"><path d="M5 12l5 5 9-10"/></svg><span data-i18n="p1.f4">User permissions &amp; activity control</span></li>
+              </ul>
+              <a href="#contact" class="more"><span data-i18n="learn">Learn more</span><svg viewBox="0 0 24 24" class="ico arrow"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            </div>
+          </article>
+
+          <!-- Sky Reports -->
+          <article class="pcard featured reveal" style="--d:.1s">
+            <span class="ribbon" data-i18n="p2.badge">Web platform</span>
+            <div class="pvis">
+              <div class="mini-rep">
+                <div class="ring"><span>87%</span></div>
+                <div class="mini-bars"><i style="--h:40%"></i><i style="--h:65%"></i><i style="--h:50%"></i><i style="--h:85%"></i><i style="--h:70%"></i></div>
+                <div class="mini-lines"><span></span><span></span><span></span></div>
+              </div>
+            </div>
+            <div class="pbody">
+              <span class="ptag" data-i18n="p2.tag">Accounting · Operations · Invoicing</span>
+              <h3>Sky Reports</h3>
+              <p data-i18n="p2.desc">Your accounting, operations and invoicing in the browser — real-time dashboards from anywhere, on any device.</p>
+              <ul class="feat">
+                <li><svg viewBox="0 0 24 24" class="ico"><path d="M5 12l5 5 9-10"/></svg><span data-i18n="p2.f1">Live dashboards &amp; KPIs</span></li>
+                <li><svg viewBox="0 0 24 24" class="ico"><path d="M5 12l5 5 9-10"/></svg><span data-i18n="p2.f2">Online invoicing</span></li>
+                <li><svg viewBox="0 0 24 24" class="ico"><path d="M5 12l5 5 9-10"/></svg><span data-i18n="p2.f3">Operations &amp; stock tracking</span></li>
+                <li><svg viewBox="0 0 24 24" class="ico"><path d="M5 12l5 5 9-10"/></svg><span data-i18n="p2.f4">Access from any device</span></li>
+              </ul>
+              <a href="#reports" class="more"><span data-i18n="learn">Learn more</span><svg viewBox="0 0 24 24" class="ico arrow"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            </div>
+          </article>
+
+          <!-- Marketplace -->
+          <article class="pcard reveal" style="--d:.2s">
+            <div class="pvis">
+              <div class="mini-phone">
+                <div class="mp-notch"></div>
+                <div class="mp-banner"></div>
+                <div class="mp-grid"><i>👕</i><i>👟</i><i>🧥</i><i>👜</i></div>
+                <span class="mp-cart">3</span>
+              </div>
+            </div>
+            <div class="pbody">
+              <span class="ptag" data-i18n="p3.tag">E‑commerce</span>
+              <h3 data-i18n="p3.title">Sky Market</h3>
+              <p data-i18n="p3.desc">A marketplace platform tailored to you — an API adapted to your systems and a theme designed around your products.</p>
+              <ul class="feat">
+                <li><svg viewBox="0 0 24 24" class="ico"><path d="M5 12l5 5 9-10"/></svg><span data-i18n="p3.f1">Custom theme for your brand</span></li>
+                <li><svg viewBox="0 0 24 24" class="ico"><path d="M5 12l5 5 9-10"/></svg><span data-i18n="p3.f2">API adapted to your systems</span></li>
+                <li><svg viewBox="0 0 24 24" class="ico"><path d="M5 12l5 5 9-10"/></svg><span data-i18n="p3.f3">Products, orders &amp; payments</span></li>
+                <li><svg viewBox="0 0 24 24" class="ico"><path d="M5 12l5 5 9-10"/></svg><span data-i18n="p3.f4">Synced with your accounting</span></li>
+              </ul>
+              <a href="#marketplace" class="more"><span data-i18n="learn">Learn more</span><svg viewBox="0 0 24 24" class="ico arrow"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SKY REPORTS ============ -->
+    <section class="block reports" id="reports">
+      <div class="container rep-grid">
+        <div>
+          <div class="head start reveal">
+            <span class="eyebrow">Sky Reports</span>
+            <h2 data-i18n="rep.title">Your whole business, live in your browser.</h2>
+            <p class="sub" data-i18n="rep.sub">One web platform for accounting, operations and invoicing — always up to date, wherever you are.</p>
+          </div>
+          <div class="tabs reveal" id="tabs" style="--d:.1s">
+            <button class="tab active" data-tab="0" type="button">
+              <h4><span class="tic"><svg viewBox="0 0 24 24" class="ico"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8M8 11h2M12 11h2M8 15h2M12 15h2"/></svg></span><span data-i18n="acc.h">Accounting that balances itself</span></h4>
+              <p data-i18n="acc.p">Ledgers, balances and statements update with every transaction — no month-end surprises.</p>
+              <span class="prog"></span>
+            </button>
+            <button class="tab" data-tab="1" type="button">
+              <h4><span class="tic"><svg viewBox="0 0 24 24" class="ico"><path d="M3 8l9-5 9 5v10l-9 5-9-5z"/><path d="M3 8l9 5 9-5M12 13v10"/></svg></span><span data-i18n="ops.h">Every warehouse in one view</span></h4>
+              <p data-i18n="ops.p">Track stock, transfers and branch performance in real time, with alerts before you run low.</p>
+              <span class="prog"></span>
+            </button>
+            <button class="tab" data-tab="2" type="button">
+              <h4><span class="tic"><svg viewBox="0 0 24 24" class="ico"><path d="M6 3h9l4 4v14H6z"/><path d="M9 12h7M9 16h7M9 8h4"/></svg></span><span data-i18n="inv.h">Invoices in seconds</span></h4>
+              <p data-i18n="inv.p">Create, send and track invoices online, and see who has paid at a glance.</p>
+              <span class="prog"></span>
+            </button>
+          </div>
+        </div>
+
+        <div class="rep-stage reveal" style="--d:.15s">
+          <div class="stage-glow"></div>
+          <div class="window stage-win">
+            <div class="win-bar"><i></i><i></i><i></i><span class="url">reports.skysoft.app</span></div>
+            <div class="panels">
+              <!-- Accounting -->
+              <div class="panel active">
+                <div class="p-head"><b data-i18n="acc.t">Account balances</b><span class="chip" data-i18n="chip.month">This month</span></div>
+                <div class="acc-grid">
+                  <div class="acc-rows">
+                    <div class="row"><span><i style="--c:#2B6CF2"></i><span data-i18n="acc.cash">Cash</span></span><b>48,200</b></div>
+                    <div class="row"><span><i style="--c:#3BB2F6"></i><span data-i18n="acc.bank">Bank</span></span><b>132,750</b></div>
+                    <div class="row"><span><i style="--c:#8B5CF6"></i><span data-i18n="acc.cust">Customers</span></span><b>64,310</b></div>
+                    <div class="row"><span><i style="--c:#F59E0B"></i><span data-i18n="acc.sup">Suppliers</span></span><b class="neg">−27,900</b></div>
+                  </div>
+                  <div class="donut"><div><small data-i18n="acc.total">Total</small><b>217,360</b></div></div>
+                </div>
+              </div>
+              <!-- Operations -->
+              <div class="panel">
+                <div class="p-head"><b data-i18n="ops.t">Stock by warehouse</b><span class="chip live"><i></i><span data-i18n="chip.live">Live</span></span></div>
+                <div class="wh">
+                  <div class="whr"><div class="whl"><span data-i18n="ops.w1">Main warehouse</span><b>82%</b></div><div class="wbar"><i style="--w:82%"></i></div></div>
+                  <div class="whr"><div class="whl"><span data-i18n="ops.w2">Downtown branch</span><b>64%</b></div><div class="wbar"><i style="--w:64%"></i></div></div>
+                  <div class="whr"><div class="whl"><span data-i18n="ops.w3">Mall branch</span><b>23%</b></div><div class="wbar low"><i style="--w:23%"></i></div></div>
+                </div>
+                <div class="alert"><svg viewBox="0 0 24 24" class="ico"><path d="M12 3l10 18H2z"/><path d="M12 10v4M12 17v.5"/></svg><span data-i18n="ops.alert">Low stock: 4 items in Mall branch</span></div>
+                <div class="transfer"><span data-i18n="ops.w1">Main warehouse</span><svg viewBox="0 0 24 24" class="ico arrow"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span data-i18n="ops.w3">Mall branch</span><em data-i18n="ops.tr">Transfer · 120 pcs</em></div>
+              </div>
+              <!-- Invoicing -->
+              <div class="panel">
+                <div class="invoice">
+                  <div class="inv-top">
+                    <span class="mark sm"><svg viewBox="0 0 100 100"><path d="M14 34C17 24 25 18 34 18H89C86 28 79 34 71 34Z"/><path d="M14 42H66C76 42 84 49 86 58H32C23 58 15 51 14 42Z"/><path d="M12 82C15 72 23 66 32 66H86C83 76 76 82 68 82Z"/></svg></span>
+                    <div><b data-i18n="inv.t">Invoice</b><small>INV‑1042</small></div>
+                  </div>
+                  <div class="inv-to"><small data-i18n="inv.to">Billed to</small><b>Sky Wear</b></div>
+                  <div class="inv-lines">
+                    <div><span data-i18n="inv.l1">Cotton T‑shirt × 24</span><b>2,136</b></div>
+                    <div><span data-i18n="inv.l2">Denim jacket × 10</span><b>3,490</b></div>
+                    <div><span data-i18n="inv.l3">Sneakers × 6</span><b>1,914</b></div>
+                  </div>
+                  <div class="inv-total"><span data-i18n="inv.total">Total</span><b>7,540</b></div>
+                  <span class="stamp" data-i18n="inv.paid">PAID</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ MARKETPLACE ============ -->
+    <section class="block market" id="marketplace">
+      <div class="container mk-grid">
+        <div>
+          <div class="head start reveal">
+            <span class="eyebrow" data-i18n="mk.eyebrow">Marketplace platform</span>
+            <h2 data-i18n="mk.title">Your store. Your brand. Our engine.</h2>
+            <p class="sub" data-i18n="mk.sub">We customize the marketplace for every client: the API is adapted to your existing systems and the theme is designed around your products. Pick an industry to see it change:</p>
+          </div>
+          <div class="swatches reveal" id="swatches" style="--d:.1s"></div>
+          <ul class="mk-points reveal" style="--d:.15s">
+            <li><span class="tic"><svg viewBox="0 0 24 24" class="ico"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/></svg></span><span data-i18n="mk.p1">Theme tailored to your products</span></li>
+            <li><span class="tic"><svg viewBox="0 0 24 24" class="ico"><path d="M8 3v4M16 3v4M6 7h12v4a6 6 0 0 1-12 0zM12 17v4"/></svg></span><span data-i18n="mk.p2">API integration with your existing systems</span></li>
+            <li><span class="tic"><svg viewBox="0 0 24 24" class="ico"><path d="M6 3h9l4 4v14H6z"/><path d="M9 13l2 2 4-4"/></svg></span><span data-i18n="mk.p3">Orders flow straight into your accounting</span></li>
+          </ul>
+          <div class="api reveal" style="--d:.2s">
+            <div class="node"><svg viewBox="0 0 24 24" class="ico"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg><span data-i18n="mk.n1">Your systems</span></div>
+            <div class="wire"><i></i></div>
+            <div class="node core"><svg viewBox="0 0 24 24" class="ico"><path d="M8 3v4M16 3v4M6 7h12v4a6 6 0 0 1-12 0zM12 17v4"/></svg>Sky API</div>
+            <div class="wire"><i></i></div>
+            <div class="node"><svg viewBox="0 0 24 24" class="ico"><path d="M4 9l1.5-5h13L20 9M4 9v11h16V9M4 9h16M9 20v-6h6v6"/></svg><span data-i18n="mk.n3">Your store</span></div>
+          </div>
+        </div>
+
+        <div class="store-wrap reveal" style="--d:.1s">
+          <div class="window store" id="store">
+            <div class="win-bar"><i></i><i></i><i></i><span class="url" id="storeUrl">skywear.store</span></div>
+            <div class="st-head">
+              <span class="st-logo" id="storeLogo">S</span>
+              <b id="storeName">Sky Wear</b>
+              <span class="st-search"><svg viewBox="0 0 24 24" class="ico"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4-4"/></svg></span>
+              <span class="st-cart"><svg viewBox="0 0 24 24" class="ico"><circle cx="9" cy="20" r="1.5"/><circle cx="17" cy="20" r="1.5"/><path d="M3 4h2l2.5 11h11L21 7H6.5"/></svg><i id="cartCount">2</i></span>
+            </div>
+            <div class="st-banner">
+              <div>
+                <small id="storeKicker">New in</small>
+                <b id="storeBanner">New season collection</b>
+                <span class="st-btn" data-i18n="mk.shop">Shop now</span>
+              </div>
+              <span class="st-hero" id="storeHero">🧥</span>
+            </div>
+            <div class="st-grid" id="storeGrid"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ WHY ============ -->
+    <section class="block why" id="why">
+      <div class="container">
+        <div class="head reveal">
+          <span class="eyebrow" data-i18n="why.eyebrow">Why Sky Soft</span>
+          <h2 data-i18n="why.title">Built for the way you work</h2>
+        </div>
+        <div class="why-grid">
+          <div class="wcard reveal"><span class="wic"><svg viewBox="0 0 24 24" class="ico"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span><h3 data-i18n="w1.h">Arabic-first, fully bilingual</h3><p data-i18n="w1.p">Interfaces, invoices and reports in Arabic and English.</p></div>
+          <div class="wcard reveal" style="--d:.06s"><span class="wic"><svg viewBox="0 0 24 24" class="ico"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></span><h3 data-i18n="w2.h">Desktop + cloud</h3><p data-i18n="w2.p">Work in the office on desktop, and online from anywhere.</p></div>
+          <div class="wcard reveal" style="--d:.12s"><span class="wic"><svg viewBox="0 0 24 24" class="ico"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span><h3 data-i18n="w3.h">Real-time reports</h3><p data-i18n="w3.p">Decisions based on today's numbers, not last month's.</p></div>
+          <div class="wcard reveal"><span class="wic"><svg viewBox="0 0 24 24" class="ico"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></span><h3 data-i18n="w4.h">Secure by design</h3><p data-i18n="w4.p">Role-based permissions, backups and full activity logs.</p></div>
+          <div class="wcard reveal" style="--d:.06s"><span class="wic"><svg viewBox="0 0 24 24" class="ico"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/></svg></span><h3 data-i18n="w5.h">Tailored to you</h3><p data-i18n="w5.p">We adapt features, APIs and themes to your business.</p></div>
+          <div class="wcard reveal" style="--d:.12s"><span class="wic"><svg viewBox="0 0 24 24" class="ico"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="14" width="4" height="6" rx="1.5"/><rect x="17" y="14" width="4" height="6" rx="1.5"/></svg></span><h3 data-i18n="w6.h">Support that answers</h3><p data-i18n="w6.p">A local team for setup, training and everyday help.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PROCESS ============ -->
+    <section class="block process">
+      <div class="container">
+        <div class="head reveal">
+          <span class="eyebrow" data-i18n="proc.eyebrow">How we work</span>
+          <h2 data-i18n="proc.title">From first call to go-live</h2>
+        </div>
+        <div class="steps reveal" id="steps">
+          <div class="line"><i></i></div>
+          <div class="step"><span class="num">1</span><h3 data-i18n="s1.h">Discover</h3><p data-i18n="s1.p">We study your workflow, products and goals.</p></div>
+          <div class="step"><span class="num">2</span><h3 data-i18n="s2.h">Customize</h3><p data-i18n="s2.p">We configure the software, API and theme for you.</p></div>
+          <div class="step"><span class="num">3</span><h3 data-i18n="s3.h">Launch</h3><p data-i18n="s3.p">Data migration, setup and team training.</p></div>
+          <div class="step"><span class="num">4</span><h3 data-i18n="s4.h">Grow</h3><p data-i18n="s4.p">Ongoing updates and support as you scale.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CTA ============ -->
+    <section class="container" id="contact">
+      <div class="cta reveal">
+        <svg class="cta-s" viewBox="0 0 100 100" aria-hidden="true">
+          <path d="M14 34C17 24 25 18 34 18H89C86 28 79 34 71 34Z"/>
+          <path d="M14 42H66C76 42 84 49 86 58H32C23 58 15 51 14 42Z"/>
+          <path d="M12 82C15 72 23 66 32 66H86C83 76 76 82 68 82Z"/>
+        </svg>
+        <div class="cloud c4"></div><div class="cloud c5"></div>
+        <h2 data-i18n="cta.title">Ready to see your business from above?</h2>
+        <p data-i18n="cta.sub">Book a free demo and we'll show you the right Sky Soft solution for your business.</p>
+        <div class="cta-btns">
+          <a href="#" class="btn btn-white"><span data-i18n="cta.b1">Book a free demo</span><svg viewBox="0 0 24 24" class="ico arrow"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a href="#" class="btn btn-outline"><svg viewBox="0 0 24 24" class="ico"><path d="M4 20l1.5-4A8 8 0 1 1 8 19z"/></svg><span data-i18n="cta.b2">Chat on WhatsApp</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER (placeholder contact details) ============ -->
+  <footer class="footer">
+    <div class="container foot-grid">
+      <div class="foot-brand">
+        <a href="#top" class="brand">
+          <span class="mark"><svg viewBox="0 0 100 100"><path class="bar" d="M14 34C17 24 25 18 34 18H89C86 28 79 34 71 34Z"/><path class="bar" d="M14 42H66C76 42 84 49 86 58H32C23 58 15 51 14 42Z"/><path class="bar" d="M12 82C15 72 23 66 32 66H86C83 76 76 82 68 82Z"/></svg></span>
+          <span class="wordmark">Sky<span>Soft</span></span>
+        </a>
+        <p data-i18n="foot.about">Accounting software, web reporting and custom marketplaces for growing businesses.</p>
+      </div>
+      <div>
+        <h4 data-i18n="nav.products">Products</h4>
+        <a href="#products" data-i18n="p1.title">Sky Soft Accounting</a>
+        <a href="#reports">Sky Reports</a>
+        <a href="#marketplace" data-i18n="p3.title">Sky Market</a>
+      </div>
+      <div>
+        <h4 data-i18n="foot.company">Company</h4>
+        <a href="#" data-i18n="foot.about2">About us</a>
+        <a href="#" data-i18n="foot.partners">Partners</a>
+        <a href="#" data-i18n="foot.careers">Careers</a>
+      </div>
+      <div>
+        <h4 data-i18n="nav.contact">Contact</h4>
+        <a href="#" class="ltr">+000 000 000 000</a>
+        <a href="#" class="ltr">info@skysoft.example</a>
+        <span data-i18n="foot.addr">City, Country</span>
+      </div>
+    </div>
+    <div class="container foot-bottom">
+      <span data-i18n="foot.copy">© 2026 Sky Soft. All rights reserved.</span>
+    </div>
+  </footer>
+
+  <script src="assets/main.js"></script>
+</body>
+</html>
