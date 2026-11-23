@@ -2,6 +2,7 @@ import { useLang } from './i18n/LanguageContext.jsx';
 import Header from './components/Header.jsx';
 import Hero from './components/Hero.jsx';
 import Stats from './components/Stats.jsx';
+import ClientsMap from './components/ClientsMap.jsx';
 import Products from './components/Products.jsx';
 import Reports from './components/Reports.jsx';
 import Marketplace from './components/Marketplace.jsx';
@@ -20,6 +21,7 @@ export default function App() {
       <main id="main">
         <Hero />
         <Stats />
+        <ClientsMap />
         <Products />
         <Reports />
         <Marketplace />

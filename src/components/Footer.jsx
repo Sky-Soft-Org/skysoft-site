@@ -17,6 +17,9 @@ export default function Footer() {
           <a href="#products">{t('p1.title')}</a>
           <a href="#reports">{t('nav.reports')}</a>
           <a href="#marketplace">{t('p3.title')}</a>
+          <a href="#products">{t('p4.title')}</a>
+          <a href="#products">{t('p5.title')}</a>
+          <a href="#products">{t('p6.title')}</a>
         </div>
         <div className="foot-col">
           <h2>{t('foot.company')}</h2>

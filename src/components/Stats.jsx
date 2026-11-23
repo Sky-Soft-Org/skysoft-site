@@ -2,9 +2,9 @@ import { useLang } from '../i18n/LanguageContext.jsx';
 
 // PLACEHOLDER numbers: replace with real figures
 const STATS = [
-  { value: '+1,200', label: 'stat.clients' },
+  { value: '+60,000', label: 'stat.clients' },
   { value: '15+', label: 'stat.years' },
-  { value: '3', label: 'stat.platforms' },
+  { value: '6', label: 'stat.platforms' },
   { value: '24/7', label: 'stat.support' },
 ];
 

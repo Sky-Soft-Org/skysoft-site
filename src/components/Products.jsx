@@ -17,6 +17,21 @@ const PRODUCTS = [
     features: ['p3.f1', 'p3.f2', 'p3.f3', 'p3.f4'],
     link: { href: '#marketplace', label: 'p3.more' },
   },
+  {
+    bar: 0, title: 'p4.title', tag: 'p4.tag', desc: 'p4.desc',
+    features: ['p4.f1', 'p4.f2', 'p4.f3', 'p4.f4'],
+    link: { href: '#contact', label: 'p4.more' },
+  },
+  {
+    bar: 1, title: 'p5.title', tag: 'p5.tag', desc: 'p5.desc',
+    features: ['p5.f1', 'p5.f2', 'p5.f3', 'p5.f4'],
+    link: { href: '#contact', label: 'p5.more' },
+  },
+  {
+    bar: 2, title: 'p6.title', tag: 'p6.tag', desc: 'p6.desc',
+    features: ['p6.f1', 'p6.f2', 'p6.f3', 'p6.f4'],
+    link: { href: '#contact', label: 'p6.more' },
+  },
 ];
 
 export default function Products() {
