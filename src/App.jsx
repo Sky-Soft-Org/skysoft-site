@@ -1,12 +1,13 @@
 import { useLang } from './i18n/LanguageContext.jsx';
 import Header from './components/Header.jsx';
 import Hero from './components/Hero.jsx';
-import Stats from './components/Stats.jsx';
 import Products from './components/Products.jsx';
 import Reports from './components/Reports.jsx';
 import Marketplace from './components/Marketplace.jsx';
+import About from './components/About.jsx';
 import Why from './components/Why.jsx';
 import Process from './components/Process.jsx';
+import Faq from './components/Faq.jsx';
 import Contact from './components/Contact.jsx';
 import Footer from './components/Footer.jsx';
 
@@ -19,12 +20,13 @@ export default function App() {
       <Header />
       <main id="main">
         <Hero />
-        <Stats />
         <Products />
         <Reports />
         <Marketplace />
+        <About />
         <Why />
         <Process />
+        <Faq />
         <Contact />
       </main>
       <Footer />

@@ -1,23 +1,28 @@
 import { useLang } from '../i18n/LanguageContext.jsx';
-import { BarMarker } from './Logo.jsx';
+import { whatsappUrl } from '../data/company.js';
+import { ERP, PRODUCTS } from '../data/products.js';
+import Icon from './Icon.jsx';
 
-const PRODUCTS = [
-  {
-    bar: 0, title: 'p1.title', tag: 'p1.tag', desc: 'p1.desc',
-    features: ['p1.f1', 'p1.f2', 'p1.f3', 'p1.f4'],
-    link: { href: '#contact', label: 'p1.more' },
-  },
-  {
-    bar: 1, title: 'nav.reports', tag: 'p2.tag', desc: 'p2.desc',
-    features: ['p2.f1', 'p2.f2', 'p2.f3', 'p2.f4'],
-    link: { href: '#reports', label: 'p2.more' },
-  },
-  {
-    bar: 2, title: 'p3.title', tag: 'p3.tag', desc: 'p3.desc',
-    features: ['p3.f1', 'p3.f2', 'p3.f3', 'p3.f4'],
-    link: { href: '#marketplace', label: 'p3.more' },
-  },
-];
+// Products without a section of their own get an anchor (Reports and Market link to their sections)
+const ANCHORED = ['sales', 'wear', 'restaurant'];
+
+// Either jumps to the product's own section, or opens WhatsApp with a question about it
+function ProductLink({ link, title }) {
+  const { t } = useLang();
+  if (link.whatsapp) {
+    return (
+      <a
+        href={whatsappUrl(t('wa.ask').replace('{x}', t(title)))}
+        className="text-link"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {t(link.label)}
+      </a>
+    );
+  }
+  return <a href={link.href} className="text-link">{t(link.label)}</a>;
+}
 
 export default function Products() {
   const { t } = useLang();
@@ -30,10 +35,26 @@ export default function Products() {
           <p className="sub">{t('prod.sub')}</p>
         </header>
 
+        {/* The main system gets the wide slot; its module list is the ERP's real menu */}
+        <article className="flagship" id={ERP.id} aria-labelledby="erp-title">
+          <div className="flagship-copy">
+            <span className="p-icon p-icon-main"><Icon name={ERP.icon} /></span>
+            <h3 id="erp-title">{t(ERP.title)}</h3>
+            <p className="product-tag">{t(ERP.tag)}</p>
+            <p className="product-desc">{t(ERP.desc)}</p>
+            <ProductLink link={ERP.link} title={ERP.title} />
+          </div>
+          <ul className="checks modules" aria-label={t('erp.modulesLabel')}>
+            {ERP.modules.map((m) => (
+              <li key={m}>{t(m)}</li>
+            ))}
+          </ul>
+        </article>
+
         <div className="products">
           {PRODUCTS.map((p) => (
-            <article className="product" key={p.title}>
-              <BarMarker bar={p.bar} />
+            <article className="product" id={ANCHORED.includes(p.id) ? p.id : undefined} key={p.id}>
+              <span className="p-icon"><Icon name={p.icon} /></span>
               <h3>{t(p.title)}</h3>
               <p className="product-tag">{t(p.tag)}</p>
               <p className="product-desc">{t(p.desc)}</p>
@@ -42,7 +63,7 @@ export default function Products() {
                   <li key={f}>{t(f)}</li>
                 ))}
               </ul>
-              <a href={p.link.href} className="text-link">{t(p.link.label)}</a>
+              <ProductLink link={p.link} title={p.title} />
             </article>
           ))}
         </div>

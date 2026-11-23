@@ -1,12 +1,60 @@
+import { useId } from 'react';
 import { useLang } from '../i18n/LanguageContext.jsx';
 import { LogoBars } from './Logo.jsx';
 
-// One label per bar of the logo, top to bottom
-const SUITE = [
-  { href: '#products', name: 'p1.title', type: 'p1.tag' },
-  { href: '#reports', name: 'nav.reports', type: 'p2.badge' },
-  { href: '#marketplace', name: 'p3.title', type: 'p3.tag' },
-];
+const MENU = ['erp.m1', 'erp.m2', 'erp.m3', 'erp.m4', 'erp.m5', 'erp.m6', 'erp.m7', 'erp.m8', 'erp.m9', 'erp.m10'];
+const FAVORITES = ['erp.f1', 'erp.f2', 'erp.f3'];
+
+// Today's date the way the ERP shows it: weekday name, then yyyy/mm/dd in Latin digits
+function today(lang) {
+  const now = new Date();
+  const day = new Intl.DateTimeFormat(lang === 'ar' ? 'ar-EG' : 'en-GB', { weekday: 'long' }).format(now);
+  const pad = (n) => String(n).padStart(2, '0');
+  return { day, date: `${now.getFullYear()}/${pad(now.getMonth() + 1)}/${pad(now.getDate())}` };
+}
+
+// A drawing of the Sky Soft ERP main screen, in the app's own colours
+function ErpScreen() {
+  const { t, lang } = useLang();
+  const gradientId = useId();
+  const { day, date } = today(lang);
+
+  return (
+    <div className="erp" role="img" aria-label={t('erp.alt')}>
+      <div className="erp-title" aria-hidden="true">
+        <LogoBars className="erp-title-mark" />
+        <span>SKY SOFT</span>
+        <span className="erp-controls"><i /><i /><i /></span>
+      </div>
+      <div className="erp-menu" aria-hidden="true">
+        {MENU.map((key) => <span key={key}>{t(key)}</span>)}
+      </div>
+      <div className="erp-body" aria-hidden="true">
+        <div className="erp-main">
+          <svg className="erp-mark" viewBox="0 0 100 100">
+            <defs>
+              <linearGradient id={gradientId} x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stopColor="#01CDFE" />
+                <stop offset=".5" stopColor="#2CB0E8" />
+                <stop offset="1" stopColor="#0454BF" />
+              </linearGradient>
+            </defs>
+            <g fill={`url(#${gradientId})`}><LogoBars inline /></g>
+          </svg>
+          <span className="erp-word">SKY <b>SOFT</b></span>
+        </div>
+        <aside className="erp-side">
+          <div className="erp-day">{day}</div>
+          <div className="erp-date">{date}</div>
+          <div className="erp-fav">{t('erp.fav')}</div>
+          <ul>
+            {FAVORITES.map((key) => <li key={key}>{t(key)}</li>)}
+          </ul>
+        </aside>
+      </div>
+    </div>
+  );
+}
 
 export default function Hero() {
   const { t } = useLang();
@@ -22,21 +70,7 @@ export default function Hero() {
             <a href="#contact" className="btn btn-secondary">{t('hero.cta2')}</a>
           </div>
         </div>
-
-        {/* Hovering a label highlights its bar (see .suite:has() in styles.css) */}
-        <div className="suite">
-          <LogoBars className="suite-mark" />
-          <ul className="suite-list" aria-label={t('nav.products')}>
-            {SUITE.map((item) => (
-              <li key={item.href}>
-                <a href={item.href}>
-                  <b>{t(item.name)}</b>
-                  <span>{t(item.type)}</span>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
+        <ErpScreen />
       </div>
     </section>
   );

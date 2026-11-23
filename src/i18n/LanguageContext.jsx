@@ -4,14 +4,14 @@ import { translations } from './translations.js';
 const STORAGE_KEY = 'skysoft-lang';
 const LanguageContext = createContext(null);
 
-// ?lang=ar|en wins, then the visitor's last choice, then English
+// ?lang=ar|en wins, then the visitor's last choice, then Arabic (the site's main language)
 function getInitialLang() {
   const fromUrl = new URLSearchParams(window.location.search).get('lang');
   if (fromUrl === 'ar' || fromUrl === 'en') return fromUrl;
   try {
-    return localStorage.getItem(STORAGE_KEY) === 'ar' ? 'ar' : 'en';
+    return localStorage.getItem(STORAGE_KEY) === 'en' ? 'en' : 'ar';
   } catch {
-    return 'en';
+    return 'ar';
   }
 }
 
@@ -24,6 +24,7 @@ export function LanguageProvider({ children }) {
     html.lang = lang;
     html.dir = lang === 'ar' ? 'rtl' : 'ltr';
     document.title = translations[lang]['meta.title'];
+    document.querySelector('meta[name="description"]')?.setAttribute('content', translations[lang]['meta.desc']);
     try {
       localStorage.setItem(STORAGE_KEY, lang);
     } catch {

@@ -1,6 +1,5 @@
 import { useRef, useState } from 'react';
 import { useLang } from '../i18n/LanguageContext.jsx';
-import { BarMarker } from './Logo.jsx';
 import Icon from './Icon.jsx';
 
 const TABS = [
@@ -83,7 +82,7 @@ export default function Reports() {
       <div className="container split">
         <div>
           <header className="section-head">
-            <p className="kicker"><BarMarker bar={1} /><span>{t('nav.reports')}</span></p>
+            <p className="kicker"><Icon name="chart" /><span>{t('nav.reports')}</span></p>
             <h2 id="rep-title">{t('rep.title')}</h2>
             <p className="sub">{t('rep.sub')}</p>
           </header>
@@ -156,7 +155,7 @@ export default function Reports() {
               <div><b>{t('inv.t')}</b> <span className="num muted">INV‑1042</span></div>
               <span className="chip chip-paid">{t('inv.paid')}</span>
             </div>
-            <p className="billed"><span>{t('inv.to')}</span> <b>Sky Wear</b></p>
+            <p className="billed"><span>{t('inv.to')}</span> <b>{t('inv.client')}</b></p>
             <Ledger rows={INVOICE_LINES} total={{ label: 'inv.total', value: '7,540' }} />
           </div>
         </div>

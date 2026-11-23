@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useLang } from '../i18n/LanguageContext.jsx';
 import { STORE_THEMES } from '../data/storeThemes.js';
-import { BarMarker } from './Logo.jsx';
 import Icon from './Icon.jsx';
 
 export default function Marketplace() {
@@ -21,7 +20,7 @@ export default function Marketplace() {
       <div className="container split">
         <div>
           <header className="section-head">
-            <p className="kicker"><BarMarker bar={2} /><span>{t('p3.title')}</span></p>
+            <p className="kicker"><Icon name="cart" /><span>{t('p3.title')}</span></p>
             <h2 id="mk-title">{t('mk.title')}</h2>
             <p className="sub">{t('mk.sub')}</p>
           </header>

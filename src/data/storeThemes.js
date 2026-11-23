@@ -2,9 +2,9 @@
 // Accents are dark enough for white text and for text on their tint (≥ 4.5:1).
 export const STORE_THEMES = [
   {
-    color: '#C2185B', tint: '#FCE8F0', icon: 'shirt', logo: 'S', url: 'skywear.store',
+    color: '#C2185B', tint: '#FCE8F0', icon: 'shirt', logo: 'L', url: 'linafashion.store',
     label: { en: 'Fashion', ar: 'أزياء' },
-    name: { en: 'Sky Wear', ar: 'سكاي وير' },
+    name: { en: 'Lina Fashion', ar: 'لينا فاشون' },
     kicker: { en: 'New in', ar: 'وصل حديثاً' },
     banner: { en: 'New season collection', ar: 'تشكيلة الموسم الجديد' },
     items: [
