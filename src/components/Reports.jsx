@@ -110,7 +110,7 @@ export default function Reports() {
         </div>
 
         <div className="screen">
-          <div className="screen-bar"><span className="ltr">reports.skysoft.app</span></div>
+          <div className="screen-bar"><span className="ltr">reports.skysoft-erb.com</span></div>
 
           {/* Accounting */}
           <div {...panelProps(0)}>

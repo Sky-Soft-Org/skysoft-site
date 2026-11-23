@@ -31,6 +31,9 @@ const ICONS = {
     </>
   ),
   plus: <path d="M12 5v14M5 12h14" />,
+  external: <path d="M14 4h6v6M20 4l-8.5 8.5M18 14v4.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6H10" />,
+  pause: <path d="M9 6v12M15 6v12" />,
+  play: <path d="M8 5.5v13l10.5-6.5z" />,
   utensils: <path d="M7 3v18M4.5 3v5.5A2.5 2.5 0 0 0 7 11a2.5 2.5 0 0 0 2.5-2.5V3M18 21V3c-2.5 1.5-4 4.5-4 8v3h4" />,
   check: <path d="M5 12.5l4.5 4.5L19 7.5" />,
   alert: (

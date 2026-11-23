@@ -63,6 +63,13 @@ export default function Products() {
                   <li key={f}>{t(f)}</li>
                 ))}
               </ul>
+              {p.site && (
+                <a className="site-link" href={p.site} target="_blank" rel="noopener noreferrer">
+                  <Icon name="globe" />
+                  <span className="ltr">{p.site.replace('https://', '')}</span>
+                  <span className="visually-hidden">{t('label.newTab')}</span>
+                </a>
+              )}
               <ProductLink link={p.link} title={p.title} />
             </article>
           ))}
