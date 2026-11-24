@@ -12,7 +12,7 @@ export const PRODUCTS = [
   {
     id: 'reports', icon: 'chart', title: 'nav.reports', tag: 'p2.tag', desc: 'p2.desc',
     features: ['p2.f1', 'p2.f2', 'p2.f3'],
-    link: { href: '#reports', label: 'p2.more' },
+    link: { href: 'https://reports.skysoft-erb.com/', label: 'p2.more', external: true },
     site: 'https://reports.skysoft-erb.com',
   },
   {
@@ -23,7 +23,7 @@ export const PRODUCTS = [
   {
     id: 'market', icon: 'cart', title: 'p3.title', tag: 'p3.tag', desc: 'p3.desc',
     features: ['p3.f1', 'p3.f2', 'p3.f3'],
-    link: { href: '#marketplace', label: 'p3.more' },
+    link: { href: 'https://market-dev.skysoft-erb.com/', label: 'p3.more', external: true },
     site: 'https://market-dev.skysoft-erb.com',
   },
   {

@@ -151,6 +151,10 @@ export const translations = {
     'live.rest.desc': "Halls, tables and orders on one screen. Waiters see which tables are free or taken and what each table's order comes to, and assign a driver to each delivery.",
     'live.reports.kind': 'Company reports',
     'live.reports.desc': "A dashboard for sales, profit, customers, suppliers and cash, with ready-made reports under it, from account statements to the full item list with prices and stock. Names and amounts are blurred to protect the client's data.",
+    'live.sales.kind': 'Landscape mobile app',
+    'live.sales.desc': "A phone app used sideways. Sales reps raise invoices, returns and purchases from one screen, then open ready reports — account statements, item movement and a daily analyzer — synced with Sky Soft ERP.",
+    'live.erp.kind': 'Windows desktop app',
+    'live.erp.desc': "The main Sky Soft system on Windows: accounts, invoices, warehouses, manufacturing, restaurants and reports from one desktop workspace, with favourites and full user permissions.",
     'label.live': 'Live systems',
     'label.newTab': '(opens in a new tab)',
 
@@ -369,6 +373,10 @@ export const translations = {
     'live.rest.desc': "الصالات والطاولات والطلبات على شاشة واحدة. يرى الويتر الطاولات المتاحة والمشغولة وقيمة طلب كل طاولة، ويعيّن سائقاً لكل طلب توصيل.",
     'live.reports.kind': 'تقارير الشركة',
     'live.reports.desc': "لوحة تحكم للمبيعات والأرباح والعملاء والموردين والنقدية، وتحتها تقارير جاهزة من كشوف الحسابات إلى قائمة الأصناف بالأسعار والكميات. الأسماء والمبالغ مموّهة لحماية بيانات العميل.",
+    'live.sales.kind': 'تطبيق موبايل بالعرض',
+    'live.sales.desc': "تطبيق على الموبايل يُستخدم بالعرض. مندوب المبيعات يفتح فواتير المبيعات والمردود والمشتريات من شاشة واحدة، ثم ينتقل لتقارير جاهزة — كشف حساب وحركة الأصناف والمحلل اليومي — وكلها متزامنة مع سكاي سوفت ERP.",
+    'live.erp.kind': 'تطبيق ويندوز',
+    'live.erp.desc': "النظام الرئيسي لسكاي سوفت على ويندوز: الحسابات والفواتير والمخازن والتصنيع والمطاعم والتقارير من مساحة عمل واحدة على سطح المكتب، مع المفضلة وصلاحيات المستخدمين.",
     'label.live': 'الأنظمة',
     'label.newTab': '(يفتح في صفحة جديدة)',
 

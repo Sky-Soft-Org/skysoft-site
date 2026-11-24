@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import { useLang } from '../i18n/LanguageContext.jsx';
 import { whatsappUrl } from '../data/company.js';
-import { SHOWCASE, SHOWCASE_IMAGES, DESKTOP_RATIO, PHONE_RATIO } from '../data/showcase.js';
+import {
+  SHOWCASE, SHOWCASE_IMAGES, DESKTOP_RATIO, PHONE_RATIO, PHONE_LANDSCAPE_RATIO, APP_DESKTOP_RATIO,
+} from '../data/showcase.js';
 import Icon from './Icon.jsx';
 
 const prefersReducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -153,33 +155,78 @@ export default function Showcase() {
         >
           <div className="live-info">
             <h3>{name}</h3>
-            <p className="live-url ltr">{item.url.replace('https://', '')}</p>
+            {item.url && <p className="live-url ltr">{item.url.replace('https://', '')}</p>}
             <p className="live-desc">{t(item.desc)}</p>
             <div className="live-actions">
-              <a className="btn btn-light" href={item.url} target="_blank" rel="noopener noreferrer">
-                {t(item.open)}
-                <Icon name="external" />
-                <span className="visually-hidden">{t('label.newTab')}</span>
-              </a>
-              <a
-                className="live-ask"
-                href={whatsappUrl(t('wa.ask').replace('{x}', name))}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {t('live.ask')}
-              </a>
+              {item.url ? (
+                <>
+                  <a className="btn btn-light" href={item.url} target="_blank" rel="noopener noreferrer">
+                    {t(item.open)}
+                    <Icon name="external" />
+                    <span className="visually-hidden">{t('label.newTab')}</span>
+                  </a>
+                  <a
+                    className="live-ask"
+                    href={whatsappUrl(t('wa.ask').replace('{x}', name))}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {t('live.ask')}
+                  </a>
+                </>
+              ) : (
+                <a
+                  className="btn btn-light"
+                  href={whatsappUrl(t('wa.ask').replace('{x}', name))}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {t('live.ask')}
+                  <Icon name="external" />
+                  <span className="visually-hidden">{t('label.newTab')}</span>
+                </a>
+              )}
             </div>
           </div>
 
-          <div className="live-stage" onPointerEnter={() => setHeld(true)} onPointerLeave={() => setHeld(false)}>
-            <div className="screen live-browser">
-              <div className="screen-bar"><span className="ltr">{item.url.replace('https://', '')}</span></div>
-              <Shot shot={item.desktop} frameRatio={DESKTOP_RATIO} className="shot-desktop" alt={t('live.altDesktop').replace('{x}', name)} />
-            </div>
-            <div className="phone">
-              <Shot shot={item.phone} frameRatio={PHONE_RATIO} className="shot-phone" alt={t('live.altPhone').replace('{x}', name)} />
-            </div>
+          <div
+            className={`live-stage${item.device || !item.phone ? ' live-stage-solo' : ''}`}
+            onPointerEnter={() => setHeld(true)}
+            onPointerLeave={() => setHeld(false)}
+          >
+            {item.device === 'phone-landscape' ? (
+              <div className="phone phone-landscape">
+                <Shot
+                  shot={item.phone}
+                  frameRatio={PHONE_LANDSCAPE_RATIO}
+                  className="shot-phone-landscape"
+                  alt={t('live.altPhone').replace('{x}', name)}
+                />
+              </div>
+            ) : item.device === 'desktop' ? (
+              <div className="live-app">
+                <Shot
+                  shot={item.desktop}
+                  frameRatio={APP_DESKTOP_RATIO}
+                  className="shot-app"
+                  alt={t('live.altDesktop').replace('{x}', name)}
+                />
+              </div>
+            ) : (
+              <>
+                <div className="screen live-browser">
+                  <div className="screen-bar">
+                    <span className="ltr">{item.url ? item.url.replace('https://', '') : name}</span>
+                  </div>
+                  <Shot shot={item.desktop} frameRatio={DESKTOP_RATIO} className="shot-desktop" alt={t('live.altDesktop').replace('{x}', name)} />
+                </div>
+                {item.phone && (
+                  <div className="phone">
+                    <Shot shot={item.phone} frameRatio={PHONE_RATIO} className="shot-phone" alt={t('live.altPhone').replace('{x}', name)} />
+                  </div>
+                )}
+              </>
+            )}
           </div>
         </div>
       </div>

@@ -3,10 +3,9 @@ import { whatsappUrl } from '../data/company.js';
 import { ERP, PRODUCTS } from '../data/products.js';
 import Icon from './Icon.jsx';
 
-// Products without a section of their own get an anchor (Reports and Market link to their sections)
-const ANCHORED = ['sales', 'wear', 'restaurant'];
+const ANCHORED = ['reports', 'sales', 'market', 'wear', 'restaurant'];
 
-// Either jumps to the product's own section, or opens WhatsApp with a question about it
+// WhatsApp ask, live site, or in-page anchor
 function ProductLink({ link, title }) {
   const { t } = useLang();
   if (link.whatsapp) {
@@ -17,6 +16,13 @@ function ProductLink({ link, title }) {
         target="_blank"
         rel="noopener noreferrer"
       >
+        {t(link.label)}
+      </a>
+    );
+  }
+  if (link.external) {
+    return (
+      <a href={link.href} className="text-link" target="_blank" rel="noopener noreferrer">
         {t(link.label)}
       </a>
     );

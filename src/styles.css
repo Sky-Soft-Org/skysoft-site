@@ -489,7 +489,9 @@ p { text-wrap: pretty; }
 
 /* product tabs: a rule over each; the one on show fills with cyan as it plays */
 .live-tabs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 24px; }
-@media (min-width: 768px) { .live-tabs { grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: 32px; } }
+@media (min-width: 768px) { .live-tabs { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 28px; } }
+@media (min-width: 1100px) { .live-tabs { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 24px; } }
+@media (min-width: 1280px) { .live-tabs { grid-template-columns: repeat(6, minmax(0, 1fr)); column-gap: 20px; } }
 .live-tab {
   position: relative; display: block; width: 100%; text-align: start;
   padding: 16px 0 18px; border-top: 2px solid rgba(255, 255, 255, .2);
@@ -524,15 +526,28 @@ html[dir="rtl"] .live-url { text-align: right; }
 
 /* the screens: a browser window with a phone standing in front of its corner */
 .live-stage { position: relative; padding-inline-end: 15%; padding-bottom: 7%; }
+.live-stage-solo { padding-inline-end: 0; padding-bottom: 0; }
 .live-browser { border-color: rgba(255, 255, 255, .16); box-shadow: 0 48px 90px -40px rgba(0, 0, 0, .7); }
+/* Sky Soft ERP: real Windows window capture, no fake browser chrome */
+.live-app {
+  overflow: hidden; border-radius: 10px;
+  box-shadow: 0 48px 90px -40px rgba(0, 0, 0, .7), 0 0 0 1px rgba(255, 255, 255, .16);
+}
+.shot-app { aspect-ratio: 1024 / 549; }
 .phone {
   position: absolute; inset-inline-end: 0; bottom: 0; width: 24%;
   padding: 7px; border-radius: 30px; background: var(--ink);
   box-shadow: 0 0 0 1px rgba(255, 255, 255, .18), 0 30px 60px -24px rgba(0, 0, 0, .75);
 }
+/* Smart Sales: phone held sideways, centered on the stage */
+.phone-landscape {
+  position: relative; inset: auto; width: min(100%, 720px); margin-inline: auto;
+  padding: 12px 16px; border-radius: 28px;
+}
 .shot { position: relative; overflow: hidden; background: #fff; }
 .shot-desktop { aspect-ratio: 1440 / 900; }
 .shot-phone { aspect-ratio: 390 / 844; border-radius: 23px; }
+.shot-phone-landscape { aspect-ratio: 1024 / 526; border-radius: 18px; }
 .shot img { display: block; width: 100%; height: auto; }
 .shot-page { position: absolute; inset: 0 0 auto; }
 .shot-still { transform-origin: 50% 35%; }
@@ -544,8 +559,11 @@ html[dir="rtl"] .live-url { text-align: right; }
 /* phones: the browser takes the full width and the phone stands bigger in front of it */
 @media (max-width: 639.98px) {
   .live-stage { padding-inline-end: 0; padding-bottom: 32%; }
+  .live-stage-solo { padding-bottom: 0; }
   .phone { width: 36%; padding: 5px; border-radius: 22px; }
+  .phone-landscape { width: 100%; padding: 8px 12px; border-radius: 22px; }
   .shot-phone { border-radius: 17px; }
+  .shot-phone-landscape { border-radius: 14px; }
 }
 @media (max-width: 1099.98px) { .live-stage { order: -1; } }
 @media (min-width: 1100px) {

@@ -24,12 +24,27 @@ import reportsDesktopItems from '../assets/showcase/reports-desktop-items.webp';
 import reportsMobileDashboard from '../assets/showcase/reports-mobile-dashboard.webp';
 import reportsMobileCatalog from '../assets/showcase/reports-mobile-catalog.webp';
 import reportsMobileItems from '../assets/showcase/reports-mobile-items.webp';
+import salesDesktopInvoices from '../assets/showcase/sales-desktop-invoices.jpg';
+import salesDesktopReports from '../assets/showcase/sales-desktop-reports.jpg';
+import salesDesktopInvoice from '../assets/showcase/sales-desktop-invoice.jpg';
+import erpDesktop from '../assets/showcase/erp-desktop.png';
 
 // Visible height ÷ width of each frame's screen
 export const DESKTOP_RATIO = 900 / 1440;
 export const PHONE_RATIO = 844 / 390;
+// Smart Sales runs on phones held sideways
+export const PHONE_LANDSCAPE_RATIO = 526 / 1024;
+// Sky Soft ERP window capture
+export const APP_DESKTOP_RATIO = 549 / 1024;
 
 export const SHOWCASE = [
+  {
+    id: 'erp', name: 'erp.title', kind: 'live.erp.kind', desc: 'live.erp.desc', open: 'live.ask',
+    // Windows desktop app — screenshot already includes the window chrome
+    device: 'desktop',
+    seconds: 9,
+    desktop: { src: erpDesktop, w: 1024, h: 549 },
+  },
   {
     id: 'wear', name: 'wear.title', kind: 'live.wear.kind', desc: 'live.wear.desc', open: 'live.openStore',
     url: 'https://skywear.skysoft-erb.com',
@@ -61,9 +76,17 @@ export const SHOWCASE = [
     desktop: { src: reportsDesktopDashboard, w: 1440, h: 900, frames: [reportsDesktopCatalog, reportsDesktopItems] },
     phone: { src: reportsMobileDashboard, w: 560, h: 1212, frames: [reportsMobileCatalog, reportsMobileItems] },
   },
+  {
+    id: 'sales', name: 'sales.title', kind: 'live.sales.kind', desc: 'live.sales.desc', open: 'live.ask',
+    // Landscape phone app — no public demo URL yet; CTA opens WhatsApp
+    device: 'phone-landscape',
+    seconds: 10.5,
+    // Invoices hub, then reports hub, then a sales invoice in progress
+    phone: { src: salesDesktopInvoices, w: 1024, h: 526, frames: [salesDesktopReports, salesDesktopInvoice] },
+  },
 ];
 
 // Every image the section shows, so it can fetch them all before a visitor gets there
 export const SHOWCASE_IMAGES = SHOWCASE.flatMap(({ desktop, phone }) =>
-  [desktop, phone].flatMap((s) => [s.src, s.top, s.bottom, ...(s.frames || [])]).filter(Boolean),
+  [desktop, phone].filter(Boolean).flatMap((s) => [s.src, s.top, s.bottom, ...(s.frames || [])]).filter(Boolean),
 );

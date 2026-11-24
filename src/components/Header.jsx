@@ -6,8 +6,6 @@ import Icon from './Icon.jsx';
 
 const NAV_LINKS = [
   ['#products', 'nav.products'],
-  ['#reports', 'nav.reports'],
-  ['#marketplace', 'nav.market'],
   ['#about', 'nav.about'],
   ['#contact', 'nav.contact'],
 ];

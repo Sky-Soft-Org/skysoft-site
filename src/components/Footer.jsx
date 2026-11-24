@@ -17,7 +17,7 @@ export default function Footer() {
           <a href="#erp">{t('erp.title')}</a>
           <a href="#reports">{t('nav.reports')}</a>
           <a href="#sales">{t('sales.title')}</a>
-          <a href="#marketplace">{t('p3.title')}</a>
+          <a href="#market">{t('p3.title')}</a>
           <a href="#wear">{t('wear.title')}</a>
           <a href="#restaurant">{t('rest.title')}</a>
         </div>
