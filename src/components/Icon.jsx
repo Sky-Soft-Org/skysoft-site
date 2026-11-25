@@ -8,7 +8,6 @@ const ICONS = {
   ),
   menu: <path d="M4 7h16M4 12h16M4 17h16" />,
   close: <path d="M6 6l12 12M18 6L6 18" />,
-  arrow: <path d="M5 12h14M13 6l6 6-6 6" />,
   cart: (
     <>
       <circle cx="9" cy="20" r="1.5" />
@@ -43,13 +42,6 @@ const ICONS = {
   pause: <path d="M9 6v12M15 6v12" />,
   play: <path d="M8 5.5v13l10.5-6.5z" />,
   utensils: <path d="M7 3v18M4.5 3v5.5A2.5 2.5 0 0 0 7 11a2.5 2.5 0 0 0 2.5-2.5V3M18 21V3c-2.5 1.5-4 4.5-4 8v3h4" />,
-  check: <path d="M5 12.5l4.5 4.5L19 7.5" />,
-  alert: (
-    <>
-      <circle cx="12" cy="12" r="9" />
-      <path d="M12 7.5v5.5M12 16.5h.01" />
-    </>
-  ),
   monitor: (
     <>
       <rect x="3" y="4" width="18" height="12" rx="2" />
@@ -78,7 +70,7 @@ const ICONS = {
       <rect x="17" y="14" width="4" height="6" rx="1.5" />
     </>
   ),
-  // store categories (stand in for product photos)
+  // product icons in the contact section
   shirt: <path d="M8.5 3.5 4 6l1.8 4.2 2.2-1V20h8V9.2l2.2 1L20 6l-4.5-2.5c-.6 1.4-1.9 2.3-3.5 2.3s-2.9-.9-3.5-2.3z" />,
   device: (
     <>
@@ -86,13 +78,13 @@ const ICONS = {
       <path d="M10.5 17.5h3" />
     </>
   ),
-  leaf: (
+  moon: <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" />,
+  sun: (
     <>
-      <path d="M5 19c0-8 5-13.5 14-14 .2 9-5 14-14 14z" />
-      <path d="M5 19l7.5-7.5" />
+      <circle cx="12" cy="12" r="4" />
+      <path d="M12 2.5v2M12 19.5v2M4.6 4.6 6 6M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4 6 18M18 6l1.4-1.4" />
     </>
   ),
-  drop: <path d="M12 3c3.6 4.4 6 7.6 6 10.9A6 6 0 0 1 6 13.9C6 10.6 8.4 7.4 12 3z" />,
 };
 
 export default function Icon({ name, className = 'ico' }) {

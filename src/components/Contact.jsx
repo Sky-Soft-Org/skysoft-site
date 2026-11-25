@@ -1,6 +1,6 @@
 import { useLang } from '../i18n/LanguageContext.jsx';
 import { COMPANY, whatsappUrl } from '../data/company.js';
-import { ALL_PRODUCTS } from '../data/products.js';
+import { PRODUCTS } from '../data/products.js';
 import Icon from './Icon.jsx';
 
 // Sky Soft takes requests and questions on WhatsApp or by phone, so the
@@ -18,7 +18,7 @@ export default function Contact() {
 
           <h3 className="asks-title" id="asks-title">{t('cta.asks')}</h3>
           <ul className="asks" aria-labelledby="asks-title">
-            {ALL_PRODUCTS.map((p) => (
+            {PRODUCTS.map((p) => (
               <li key={p.id}>
                 <a className="pick" href={ask(p.title)} target="_blank" rel="noopener noreferrer">
                   <span>

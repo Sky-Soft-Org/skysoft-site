@@ -1,6 +1,5 @@
-import { useId } from 'react';
 import { useLang } from '../i18n/LanguageContext.jsx';
-import { LogoBars } from './Logo.jsx';
+import { SkyS } from './Logo.jsx';
 
 const MENU = ['erp.m1', 'erp.m2', 'erp.m3', 'erp.m4', 'erp.m5', 'erp.m6', 'erp.m7', 'erp.m8', 'erp.m9', 'erp.m10'];
 const FAVORITES = ['erp.f1', 'erp.f2', 'erp.f3'];
@@ -16,13 +15,12 @@ function today(lang) {
 // A drawing of the Sky Soft ERP main screen, in the app's own colours
 function ErpScreen() {
   const { t, lang } = useLang();
-  const gradientId = useId();
   const { day, date } = today(lang);
 
   return (
     <div className="erp" role="img" aria-label={t('erp.alt')}>
       <div className="erp-title" aria-hidden="true">
-        <LogoBars className="erp-title-mark" />
+        <SkyS className="erp-title-mark" />
         <span>SKY SOFT</span>
         <span className="erp-controls"><i /><i /><i /></span>
       </div>
@@ -31,16 +29,7 @@ function ErpScreen() {
       </div>
       <div className="erp-body" aria-hidden="true">
         <div className="erp-main">
-          <svg className="erp-mark" viewBox="0 0 100 100">
-            <defs>
-              <linearGradient id={gradientId} x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stopColor="#01CDFE" />
-                <stop offset=".5" stopColor="#2CB0E8" />
-                <stop offset="1" stopColor="#0454BF" />
-              </linearGradient>
-            </defs>
-            <g fill={`url(#${gradientId})`}><LogoBars inline /></g>
-          </svg>
+          <SkyS className="erp-mark" />
           <span className="erp-word">SKY <b>SOFT</b></span>
         </div>
         <aside className="erp-side">

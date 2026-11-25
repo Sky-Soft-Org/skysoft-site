@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useLang } from '../i18n/LanguageContext.jsx';
+import { useTheme } from '../theme.js';
 import { whatsappUrl } from '../data/company.js';
 import { Brand } from './Logo.jsx';
 import Icon from './Icon.jsx';
@@ -13,6 +14,7 @@ const NAV_IDS = new Set(NAV_LINKS.map(([href]) => href.slice(1)));
 
 export default function Header() {
   const { t, lang, toggleLang } = useLang();
+  const [theme, toggleTheme] = useTheme();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [current, setCurrent] = useState('');
@@ -91,6 +93,17 @@ export default function Header() {
         </nav>
 
         <div className="actions">
+          {/* the moon turns the dark theme on, the sun turns it off */}
+          <button
+            className="theme-btn"
+            type="button"
+            aria-pressed={theme === 'dark'}
+            aria-label={t('label.dark')}
+            title={t('label.dark')}
+            onClick={toggleTheme}
+          >
+            <Icon name={theme === 'dark' ? 'sun' : 'moon'} />
+          </button>
           <button className="lang-btn" type="button" onClick={toggleLang}>
             <Icon name="globe" />
             <span id="langLabel" className="lang-full" lang={lang === 'ar' ? 'en' : 'ar'}>

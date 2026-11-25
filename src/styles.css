@@ -5,7 +5,17 @@
    pale sky background. Hairline structure, IBM Plex in Latin +
    Arabic. Mobile-first: 480 / 640 / 768 / 960 / 1100.
    ========================================================== */
+/* Brand colours: the same in both themes */
 :root {
+  --navy: #001685; /* the ERP's company-name text */
+  --royal: #0042A8; /* the ERP's date banner */
+  --menu: #88CEEB; /* the ERP's menu bar */
+  --sweep: linear-gradient(150deg, #B0FAFE 0%, #01CDFE 9%, #02A5EE 32%, #0454BF 68%, #00368D 100%);
+}
+
+/* Light theme. The hero's drawing of the ERP keeps these in dark mode too, since it shows the app as it looks. */
+:root, .erp {
+  color-scheme: light;
   --ink: #0A1A45;
   --ink-2: #2A3C63;
   --muted: #4F6282;
@@ -14,20 +24,52 @@
   --line-2: #CCDFEC; /* hairline that still shows on --wash */
   --paper: #FFFFFF;
   --wash: #EEF7FC;
-  --navy: #001685; /* the ERP's company-name text */
-  --royal: #0042A8; /* the ERP's date banner */
-  --blue: #0454BF; /* buttons, links, accents: 6.9:1 with white */
-  --blue-deep: #00368D;
+  --heading: var(--navy); /* h1, h2 and other big titles */
+  --blue: #0454BF; /* links, icons, accents: 6.9:1 with white */
+  --blue-deep: #00368D; /* their hover */
   --blue-tint: #E1F2FC;
-  --sky: #2CB0E8; /* the "S" on the splash screen; decorative only */
-  --menu: #88CEEB; /* the ERP's menu bar */
-  --sweep: linear-gradient(150deg, #B0FAFE 0%, #01CDFE 9%, #02A5EE 32%, #0454BF 68%, #00368D 100%);
-  --ok: #15803D;
-  --ok-tint: #E8F7EE;
-  --warn: #B45309;
-  --warn-tint: #FFF7E6;
-  --neg: #B91C1C;
+  --btn: #0454BF; /* primary buttons, under white text */
+  --btn-hover: #00368D;
+  --hover-bg: #EEF7FC; /* behind icon buttons in the header on hover */
+  --outline-hover: var(--ink); /* outline button border on hover */
+  --outline-hover-bg: var(--paper);
+  --header-bg: rgba(255, 255, 255, .94);
+  --ring: rgba(4, 84, 191, .16); /* the soft ring round map pins */
+  --map-dot: #B9D3E6; /* land on the dotted map */
+  --map-land: #D4E5F1; /* land on the simple map */
+  --map-main: #0454BF; /* Egypt and Saudi Arabia on the simple map */
+  --map-region: #8DC1EA; /* Jordan and the UAE on the simple map */
+}
 
+/* Dark theme: the ERP's navy, deepened to near black, with lighter blues so links and icons stay readable */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --ink: #E6ECF7;
+  --ink-2: #C2CEE3;
+  --muted: #94A6C4; /* 7:1 on --paper */
+  --line: #1D2B48;
+  --line-strong: #5A7096; /* 3.7:1 on --paper */
+  --line-2: #26385E;
+  --paper: #0A1226;
+  --wash: #0F1A34;
+  --heading: #EEF4FF;
+  --blue: #6AAEFF; /* 8:1 on --paper */
+  --blue-deep: #A6CFFF;
+  --blue-tint: #13284F;
+  --btn: #1563D4; /* 5.6:1 with white text */
+  --btn-hover: #2870DC; /* lighter on hover, still 4.7:1 with white text */
+  --hover-bg: #1A2849;
+  --outline-hover: var(--blue);
+  --outline-hover-bg: var(--blue-tint);
+  --header-bg: rgba(10, 18, 38, .9);
+  --ring: rgba(106, 174, 255, .2);
+  --map-dot: #2B3F66;
+  --map-land: #1E2F52;
+  --map-main: #4C9BFF;
+  --map-region: #3A73C2;
+}
+
+:root {
   --radius: 10px;
   --gutter: 16px;
   --header-h: 64px;
@@ -72,14 +114,12 @@ svg { display: block; }
 main [id] { scroll-margin-top: calc(var(--header-h) + 8px); }
 .ltr { direction: ltr; unicode-bidi: isolate; }
 .num { direction: ltr; unicode-bidi: isolate; font-variant-numeric: tabular-nums; }
-.muted { color: var(--muted); }
 .ico { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
 .ico-fill { fill: currentColor; stroke: none; }
-[dir="rtl"] .arrow { transform: scaleX(-1); }
 
 .skip-link {
   position: absolute; z-index: 100; inset-inline-start: 16px; top: -60px;
-  padding: 10px 16px; border-radius: var(--radius); background: var(--ink); color: #fff; font-weight: 500;
+  padding: 10px 16px; border-radius: var(--radius); background: var(--ink); color: var(--paper); font-weight: 500;
 }
 .skip-link:focus { top: 12px; }
 /* off screen, still read out by screen readers */
@@ -90,7 +130,7 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 600; line-height: 1.
 h1 { font-size: clamp(2.25rem, 1.4rem + 3.4vw, 4rem); font-weight: 700; line-height: 1.08; letter-spacing: -.03em; }
 h2 { font-size: clamp(1.625rem, 1.3rem + 1.4vw, 2.375rem); }
 h3 { font-size: 1.125rem; letter-spacing: -.01em; }
-h1, h2 { color: var(--navy); }
+h1, h2 { color: var(--heading); }
 /* Arabic letters need zero tracking and taller lines; Alexandria's Arabic sits large, so h1 steps down */
 html[lang="ar"] :is(h1, h2, h3) { letter-spacing: 0; line-height: 1.45; }
 html[lang="ar"] h1 { font-size: clamp(2.125rem, 1.35rem + 3vw, 3.5rem); line-height: 1.35; }
@@ -106,19 +146,19 @@ p { text-wrap: pretty; }
   font-weight: 600; font-size: 1rem; line-height: 1.2; white-space: nowrap;
   transition: background-color .2s, border-color .2s, color .2s;
 }
-.btn-primary { background: var(--blue); color: #fff; }
-.btn-primary:hover { background: var(--blue-deep); }
+.btn-primary { background: var(--btn); color: #fff; }
+.btn-primary:hover { background: var(--btn-hover); }
 .btn-secondary { background: var(--paper); border-color: var(--line-strong); color: var(--ink); }
-.btn-secondary:hover { border-color: var(--ink); }
+.btn-secondary:hover { border-color: var(--outline-hover); background: var(--outline-hover-bg); }
 .btn-sm { min-height: 40px; padding: 8px 16px; font-size: .9375rem; }
 .btn-light { background: #fff; color: var(--navy); }
-.btn-light:hover { background: var(--blue-tint); }
+.btn-light:hover { background: #E1F2FC; }
 .btn-light .ico { width: 18px; height: 18px; }
 
 /* ---------- Header ---------- */
 .header {
   position: sticky; top: 0; z-index: 50;
-  background: rgba(255, 255, 255, .94);
+  background: var(--header-bg);
   -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
   border-bottom: 1px solid transparent;
   transition: border-color .2s;
@@ -126,11 +166,13 @@ p { text-wrap: pretty; }
 .header.scrolled, .header.open { border-bottom-color: var(--line); }
 /* a thin strip of the ERP's sky sweep along the top edge */
 .header-row { display: flex; align-items: center; gap: 24px; height: var(--header-h); }
-.brand { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; flex-shrink: 0; }
-.mark { width: 34px; height: 34px; border-radius: 9px; background: var(--sweep); display: grid; place-items: center; }
-.mark svg { width: 72%; height: 72%; fill: #fff; }
-.wordmark { font-family: "IBM Plex Sans", sans-serif; font-weight: 600; font-size: 1.25rem; letter-spacing: -.02em; direction: ltr; }
-.wordmark span { color: var(--blue); margin-inline-start: 2px; }
+.brand { display: inline-flex; align-items: center; min-height: 44px; flex-shrink: 0; }
+/* the full Sky Soft logo (Logo.jsx): the copy with light "SOFT" letters shows on the dark theme */
+.brand-logo { display: block; width: auto; height: 42px; }
+.brand-logo-dark, :root[data-theme="dark"] .brand-logo-light { display: none; }
+:root[data-theme="dark"] .brand-logo-dark { display: block; }
+.foot-brand .brand-logo { height: 50px; }
+@media (max-width: 399.98px) { .header .brand-logo { height: 36px; } }
 
 .actions { display: flex; align-items: center; gap: 4px; margin-inline-start: auto; }
 .lang-btn {
@@ -138,11 +180,17 @@ p { text-wrap: pretty; }
   border-radius: var(--radius); font-weight: 500; font-size: .9375rem; color: var(--ink-2);
   transition: color .2s, background-color .2s;
 }
-.lang-btn:hover { color: var(--blue); background: var(--wash); }
+.lang-btn:hover { color: var(--blue); background: var(--hover-bg); }
 .lang-btn .ico { width: 18px; height: 18px; }
 .lang-btn [lang="ar"] { font-family: "IBM Plex Sans Arabic", sans-serif; }
 .lang-btn [lang="en"] { font-family: "IBM Plex Sans", sans-serif; }
 .lang-short { display: none; }
+.theme-btn {
+  display: grid; place-items: center; width: 44px; height: 44px; border-radius: var(--radius);
+  color: var(--ink-2); transition: color .2s, background-color .2s;
+}
+.theme-btn:hover { color: var(--blue); background: var(--hover-bg); }
+.theme-btn .ico { width: 19px; height: 19px; }
 /* Narrow phones (under 400px): logo, language and menu only fit with a short language label */
 @media (max-width: 399.98px) {
   .header-row { gap: 12px; }
@@ -152,7 +200,7 @@ p { text-wrap: pretty; }
 }
 .header-cta { display: none; }
 .menu-btn { display: grid; place-items: center; width: 44px; height: 44px; border-radius: var(--radius); transition: background-color .2s; }
-.menu-btn:hover { background: var(--wash); }
+.menu-btn:hover { background: var(--hover-bg); }
 .menu-btn .ico { width: 22px; height: 22px; }
 .menu-btn .ico-close, .header.open .menu-btn .ico-open { display: none; }
 .header.open .menu-btn .ico-close { display: block; }
@@ -228,6 +276,7 @@ p { text-wrap: pretty; }
 
 /* ERP main screen (a drawing; role="img" with a label) */
 .erp {
+  color: var(--ink);
   min-width: 0; overflow: hidden;
   background: var(--paper); border: 1px solid rgba(0, 54, 141, .18); border-radius: 12px;
   box-shadow: 0 2px 4px rgba(0, 22, 133, .06), 0 36px 64px -30px rgba(0, 54, 141, .6);
@@ -239,7 +288,7 @@ p { text-wrap: pretty; }
   color: var(--blue); font-family: "IBM Plex Sans", sans-serif; letter-spacing: .04em;
   direction: ltr; /* Windows draws the title bar left-to-right even for Arabic apps */
 }
-.erp-title-mark { width: 14px; height: 14px; fill: var(--blue); }
+.erp-title-mark { width: 15px; height: 15px; }
 .erp-controls { display: flex; align-items: center; gap: 10px; margin-left: auto; color: var(--muted); }
 .erp-controls i { display: block; width: 8px; height: 8px; }
 .erp-controls i:nth-child(1) { height: 1.5px; background: currentColor; }
@@ -288,46 +337,19 @@ p { text-wrap: pretty; }
 
 /* The one load-time moment: the S mark's bars slide in, as on the splash screen */
 @media (prefers-reduced-motion: no-preference) {
-  .erp-mark path { animation: barIn .9s var(--ease) backwards .2s; }
-  .erp-mark path:nth-child(2) { animation-name: barInRev; animation-delay: .32s; }
-  .erp-mark path:nth-child(3) { animation-delay: .44s; }
+  .erp-mark .s-bar { animation: barIn .9s var(--ease) backwards .2s; }
+  .erp-mark .s-bar-2 { animation-name: barInRev; animation-delay: .32s; }
+  .erp-mark .s-bar-3 { animation-delay: .44s; }
 }
-@keyframes barIn { from { transform: translateX(-90px); } }
-@keyframes barInRev { from { transform: translateX(90px); } }
+/* in the S's own units (180 wide), so each bar starts fully outside the mark */
+@keyframes barIn { from { transform: translateX(-200px); } }
+@keyframes barInRev { from { transform: translateX(200px); } }
 
 /* ---------- Sections ---------- */
 .section { padding-block: clamp(64px, 9vw, 120px); border-top: 1px solid var(--line); }
 .section-head { max-width: 40rem; margin-bottom: clamp(32px, 4vw, 56px); }
-.kicker { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; font-weight: 600; font-size: .9375rem; color: var(--blue); }
-.kicker .ico { width: 20px; height: 20px; }
-.split { display: grid; gap: 40px; }
-@media (min-width: 960px) {
-  .split { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 72px; align-items: center; }
-}
-
-/* checklist */
-.checks { display: grid; gap: 10px; }
-.checks li { position: relative; padding-inline-start: 28px; color: var(--ink-2); }
-.checks li::before {
-  content: ""; position: absolute; inset-inline-start: 3px; top: .5em;
-  width: 11px; height: 6px; border-left: 2px solid var(--blue); border-bottom: 2px solid var(--blue);
-  transform: rotate(-45deg);
-}
-
-/* ---------- Products ---------- */
-.p-icon { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; background: var(--blue-tint); color: var(--blue); }
-.p-icon .ico { width: 22px; height: 22px; }
-.p-icon-main { width: 52px; height: 52px; border-radius: 14px; background: var(--sweep); color: #fff; box-shadow: 0 10px 20px -10px rgba(4, 84, 191, .6); }
-.p-icon-main .ico { width: 26px; height: 26px; }
-
-/* Sky Soft ERP, the main system, gets the wide slot */
-.flagship {
-  display: grid; gap: 32px; margin-bottom: clamp(40px, 5vw, 64px); padding: clamp(24px, 4vw, 44px);
-  border: 1px solid var(--line-2); border-radius: 16px;
-  background: linear-gradient(160deg, var(--paper) 0%, var(--wash) 100%);
-}
-.flagship h3 { margin-top: 20px; font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem); color: var(--navy); }
-.flagship .text-link { display: inline-block; margin-top: 18px; }
+/* underlined text link (the FAQ's "ask us something else") */
+.text-link { display: inline-block; margin-top: 18px; }
 .modules { gap: 12px 32px; align-content: start; }
 @media (min-width: 640px) { .modules { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (min-width: 960px) {
@@ -349,20 +371,7 @@ p { text-wrap: pretty; }
   transition: color .2s;
 }
 .text-link:hover { color: var(--blue-deep); text-decoration-thickness: 2px; }
-/* the product's live web address, just above its card link, so the main links still line up along the bottom */
-.site-link {
-  display: inline-flex; align-items: center; gap: 8px; align-self: flex-start;
-  margin-top: auto; padding-block: 9px;
-  font-size: .9375rem; color: var(--muted); transition: color .2s;
-}
-.site-link .ico { width: 17px; height: 17px; color: var(--blue); }
-.site-link:hover { color: var(--blue); }
-.site-link + .text-link { margin-top: 2px; }
-@media (min-width: 640px) { .products { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (min-width: 1024px) { .products { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-@media (min-width: 1280px) { .products { grid-template-columns: repeat(5, minmax(0, 1fr)); column-gap: 28px; } }
-
-/* ---------- Product screens (shared) ---------- */
+/* ---------- Browser frame (the computer screen in the showcase) ---------- */
 .screen {
   min-width: 0; overflow: hidden;
   background: var(--paper); border: 1px solid var(--line); border-radius: 14px;
@@ -370,89 +379,6 @@ p { text-wrap: pretty; }
 }
 .screen-bar { display: flex; justify-content: center; padding: 9px 14px; background: var(--wash); border-bottom: 1px solid var(--line); }
 .screen-bar span { font-size: .8125rem; color: var(--muted); }
-.chip { display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 999px; background: var(--blue-tint); color: var(--blue-deep); font-size: .8125rem; font-weight: 500; white-space: nowrap; }
-.chip-live::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--ok); }
-.chip-paid { background: var(--ok-tint); color: var(--ok); }
-
-/* ---------- Sky Reports ---------- */
-.tabs { display: grid; border-top: 1px solid var(--line); }
-.tab {
-  display: block; width: 100%; text-align: start;
-  padding: 18px 0; padding-inline-start: 18px;
-  border-bottom: 1px solid var(--line); border-inline-start: 2px solid transparent;
-  transition: border-color .2s;
-}
-.tab-title { display: block; font-weight: 600; font-size: 1.0625rem; color: var(--muted); transition: color .2s; }
-.tab-text { display: block; margin-top: 4px; font-size: .9375rem; color: var(--muted); }
-.tab:hover .tab-title { color: var(--ink); }
-.tab[aria-selected="true"] { border-inline-start-color: var(--blue); }
-.tab[aria-selected="true"] .tab-title { color: var(--ink); }
-.tab:focus-visible { outline-offset: -2px; }
-
-.panel { padding: clamp(18px, 3vw, 28px); }
-.panel:focus-visible { outline-offset: -4px; }
-@media (prefers-reduced-motion: no-preference) {
-  .panel:not([hidden]) { animation: panelIn .3s var(--ease); }
-}
-@keyframes panelIn { from { opacity: 0; } }
-.panel-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 12px; }
-.panel-head b { font-size: 1.0625rem; font-weight: 600; }
-.ledger { width: 100%; border-collapse: collapse; }
-.ledger th, .ledger td { padding: 13px 0; border-bottom: 1px solid var(--line); font-weight: 500; }
-.ledger th { text-align: start; color: var(--ink-2); }
-.ledger td { text-align: end; white-space: nowrap; padding-inline-start: 16px; }
-.ledger tfoot th, .ledger tfoot td { border-bottom: 0; border-top: 1.5px solid var(--ink); font-weight: 600; color: var(--ink); }
-.ledger .neg { color: var(--neg); }
-.meters { display: grid; gap: 18px; margin-top: 8px; }
-.meter-label { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 6px; font-size: .9375rem; color: var(--ink-2); }
-.meter { height: 6px; border-radius: 3px; background: #E9EEF6; overflow: hidden; }
-.meter i { display: block; width: var(--w); height: 100%; border-radius: inherit; background: var(--blue); }
-.meter.low i { background: #D97706; }
-.note { margin-top: 22px; padding: 11px 14px; border-radius: 8px; background: var(--warn-tint); color: var(--warn); font-size: .9375rem; font-weight: 500; }
-.transfer { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; margin-top: 10px; padding: 11px 14px; border: 1px solid var(--line); border-radius: 8px; font-size: .9375rem; color: var(--ink-2); }
-.transfer .ico { width: 18px; height: 18px; color: var(--blue); }
-.transfer em { margin-inline-start: auto; font-style: normal; font-size: .875rem; color: var(--muted); }
-.billed { margin-bottom: 4px; color: var(--muted); font-size: .9375rem; }
-.billed b { color: var(--ink); font-weight: 600; }
-
-/* ---------- Marketplace ---------- */
-.swatches { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
-.sw {
-  display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px;
-  border: 1px solid var(--line-strong); border-radius: 999px;
-  font-weight: 500; font-size: .9375rem; color: var(--ink-2);
-  transition: border-color .2s, box-shadow .2s, color .2s;
-}
-.sw:hover { border-color: var(--ink); color: var(--ink); }
-.sw i { width: 12px; height: 12px; border-radius: 50%; background: var(--c); }
-.sw[aria-pressed="true"] { border-color: var(--ink); color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
-
-.store { --accent: #C2185B; --tint: #FCE8F0; }
-.store :is(.st-logo, .st-cart i, .st-banner, .st-banner small, .st-btn, .prod .th) { transition: background-color .35s, color .35s; }
-.st-head { display: flex; align-items: center; gap: 10px; padding: 12px 18px; border-bottom: 1px solid var(--line); }
-.st-logo { width: 30px; height: 30px; border-radius: 8px; display: grid; place-items: center; background: var(--accent); color: #fff; font-weight: 600; font-family: "IBM Plex Sans", sans-serif; }
-.st-head b { margin-inline-end: auto; font-weight: 600; }
-.st-cart { position: relative; display: grid; place-items: center; width: 36px; height: 36px; color: var(--ink-2); }
-.st-cart i { position: absolute; top: -1px; inset-inline-end: -4px; min-width: 18px; height: 18px; padding: 0 5px; border-radius: 9px; display: grid; place-items: center; background: var(--accent); color: #fff; font-size: .75rem; font-weight: 600; font-style: normal; }
-.st-banner { margin: 16px 18px 0; padding: 20px; border-radius: 10px; background: var(--tint); }
-.st-banner small { display: block; font-size: .8125rem; font-weight: 600; color: var(--accent); }
-.st-banner b { display: block; margin: 2px 0 12px; font-size: 1.25rem; font-weight: 600; line-height: 1.3; }
-.st-btn { display: inline-block; padding: 6px 14px; border-radius: 6px; background: var(--accent); color: #fff; font-size: .8125rem; font-weight: 600; }
-.st-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; padding: 16px 18px 20px; }
-@media (min-width: 520px) { .st-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
-.prod { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
-@media (prefers-reduced-motion: no-preference) {
-  .prod.enter { animation: prodIn .4s var(--ease) backwards; animation-delay: calc(var(--i) * 50ms); }
-}
-@keyframes prodIn { from { opacity: 0; transform: translateY(6px); } }
-.prod .th { aspect-ratio: 1; border-radius: 8px; display: grid; place-items: center; background: var(--tint); color: var(--accent); }
-.prod .th svg { width: 38%; height: 38%; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
-.prod b { font-size: .8125rem; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.prod .pr { display: flex; justify-content: space-between; align-items: center; gap: 6px; }
-.prod .pr span { font-size: .8125rem; color: var(--muted); }
-.prod button { position: relative; width: 28px; height: 28px; border: 1px solid var(--line-strong); border-radius: 7px; display: grid; place-items: center; font-weight: 600; line-height: 1; transition: background-color .2s, border-color .2s, color .2s; }
-.prod button::after { content: ""; position: absolute; inset: -8px; }
-.prod button:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
 
 /* ---------- See our systems at work ---------- */
 /* The page's one dark band, in the ERP's navy, so the real screens stand out.
@@ -462,7 +388,7 @@ p { text-wrap: pretty; }
   /* clip (not just hidden) so the glow can't make the band scrollable sideways when a tab takes focus */
   position: relative; isolation: isolate; overflow: hidden; overflow: clip;
   border-top: 0; color: #fff;
-  background: linear-gradient(165deg, #000C52 0%, var(--navy) 55%, var(--blue-deep) 100%);
+  background: linear-gradient(165deg, #000C52 0%, var(--navy) 55%, #00368D 100%);
 }
 /* a soft sky glow behind the screens, like the sweep in the hero */
 .live::before {
@@ -644,6 +570,158 @@ html[dir="rtl"] .live-url { text-align: right; }
   .facts > div { padding-block: 32px; }
 }
 
+/* ---------- Clients ---------- */
+/* Two designs while the team picks one (Clients.jsx): the simple map and the dotted map.
+   Both show how many clients each place has only as a level: Egypt and Saudi Arabia stand out,
+   then the rest of the Middle East, then the countries further away.
+   Positions are map directions, so nothing on the maps mirrors in Arabic. */
+.clients { background: var(--wash); border-top: 0; }
+
+/* the dotted map: a dotted world on the ERP's pale sky, Egypt and Saudi Arabia lit in the
+   splash screen's cyan-to-royal sweep, brightest at Mansoura */
+/* at most 150vh wide, so the whole map (about 1.85:1) fits on a wide but short screen */
+.map { position: relative; overflow: hidden; container-type: inline-size; max-width: min(100%, 150vh); margin-inline: auto; }
+.map-world { position: relative; }
+.map svg { width: 100%; height: auto; }
+.map-land, .map-main { fill: none; stroke-linecap: round; }
+.map-land { stroke: var(--map-dot); stroke-width: 2.2; }
+.map-main { stroke-width: 3.2; }
+
+.pin { --gap: 14px; position: absolute; width: 0; height: 0; }
+.pin-main { --gap: 6px; } /* no dot: the name sits right against the lit-up land */
+.pin-far { --gap: 11px; }
+/* a blue dot in a ring of the page's sky; places with fewer clients get a smaller one */
+.pin:not(.pin-main)::before {
+  content: ""; position: absolute; left: -6px; top: -6px; width: 12px; height: 12px; border-radius: 50%;
+  background: var(--blue); box-shadow: 0 0 0 2.5px var(--wash), 0 0 0 7px var(--ring);
+}
+.pin-far::before { left: -4px; top: -4px; width: 8px; height: 8px; box-shadow: 0 0 0 2px var(--wash), 0 0 0 4.5px var(--ring); }
+.pin-text {
+  position: absolute; white-space: nowrap;
+  font-size: clamp(.8125rem, 1.15cqi, 1.0625rem); font-weight: 600; line-height: 1.3; color: var(--ink);
+  /* a halo of the page colour keeps names readable over the dots */
+  text-shadow: 1px 1px 0 var(--wash), -1px -1px 0 var(--wash), 1px -1px 0 var(--wash), -1px 1px 0 var(--wash), 0 0 6px var(--wash);
+}
+.pin-main .pin-text { font-family: var(--font-display); font-size: clamp(.9375rem, 1.4cqi, 1.3125rem); font-weight: 600; color: var(--heading); }
+/* which side of the pin the name sits on (inset is top right bottom left) */
+.at-center .pin-text { inset: 0 auto auto 0; transform: translate(-50%, -50%); text-align: center; }
+.at-up .pin-text { inset: auto auto var(--gap) 0; transform: translateX(-50%); text-align: center; }
+.at-down .pin-text { inset: var(--gap) auto auto 0; transform: translateX(-50%); text-align: center; }
+.at-left .pin-text { inset: 0 var(--gap) auto auto; transform: translateY(-50%); text-align: right; }
+.at-right .pin-text { inset: 0 auto auto var(--gap); transform: translateY(-50%); text-align: left; }
+
+/* phones: the map zooms in from Brazil to the Gulf (PHONE_VIEW in src/data/clients.js) */
+@media (max-width: 767.98px) {
+  .map { aspect-ratio: var(--ratio); }
+  .map-world { position: absolute; left: 0; top: 0; width: calc(var(--zoom) * 100%); transform: translate(var(--shift-x), var(--shift-y)); }
+  .sm-center .pin-text { inset: 0 auto auto 0; transform: translate(-50%, -50%); text-align: center; }
+  .sm-up .pin-text { inset: auto auto var(--gap) 0; transform: translateX(-50%); text-align: center; }
+  .sm-down .pin-text { inset: var(--gap) auto auto 0; transform: translateX(-50%); text-align: center; }
+  .sm-left .pin-text { inset: 0 var(--gap) auto auto; transform: translateY(-50%); text-align: right; }
+  .sm-right .pin-text { inset: 0 auto auto var(--gap); transform: translateY(-50%); text-align: left; }
+}
+
+/* the key: the same places in words, one column per region */
+.key { display: grid; gap: 32px 40px; margin-top: clamp(24px, 3.5vw, 48px); }
+.key-group { padding-top: 20px; border-top: 2px solid var(--line-2); }
+.key-group:first-child { border-top-color: var(--blue); }
+.key h3 { display: flex; align-items: flex-start; gap: 10px; font-size: 1.0625rem; }
+/* each mark takes 24px across (its ring included) and centres on the heading's first line */
+.key-mark {
+  flex-shrink: 0; width: 12px; height: 12px; border-radius: 50%;
+  margin: 6px 6px 0; margin: calc(.5lh - 6px) 6px 0;
+  background: var(--blue); box-shadow: 0 0 0 2.5px var(--wash), 0 0 0 6px var(--ring);
+}
+/* three dots of the lit-up land */
+.key-main {
+  width: 16px; height: 14px; border-radius: 0; box-shadow: none;
+  margin: 5px 4px 0; margin: calc(.5lh - 7px) 4px 0;
+  background:
+    radial-gradient(circle at 4px 3.5px, #01CDFE 2.5px, transparent 3px),
+    radial-gradient(circle at 12px 3.5px, #02A5EE 2.5px, transparent 3px),
+    radial-gradient(circle at 8px 10.5px, #0454BF 2.5px, transparent 3px);
+}
+.key-far {
+  width: 8px; height: 8px; margin: 8px 8px 0; margin: calc(.5lh - 4px) 8px 0;
+  box-shadow: 0 0 0 2px var(--wash), 0 0 0 4.5px var(--ring);
+}
+.key-level { display: flex; align-items: center; gap: 10px; margin-top: 6px; font-size: .9375rem; color: var(--muted); }
+.key ul { margin-top: 10px; }
+.key li { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding-block: 11px; border-bottom: 1px solid var(--line-2); }
+.key li b { font-weight: 600; }
+.key li span { font-size: .9375rem; color: var(--muted); text-align: end; }
+.key .key-more { color: var(--muted); }
+@media (min-width: 768px) { .key { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+
+/* How many clients, as 3, 2 or 1 filled bars; they fill from the reading start, so from the right in Arabic */
+.level { display: inline-flex; gap: 3px; flex-shrink: 0; }
+.level i { width: 14px; height: 6px; border-radius: 3px; background: var(--line-2); }
+.level-3 i, .level-2 i:nth-child(-n + 2), .level-1 i:first-child { background: var(--blue); }
+
+/* the simple map: solid shapes from Brazil to the Gulf, no borders drawn, beside the places
+   listed from most clients to fewest; the swatches in the list match the map */
+.simple-layout { display: grid; grid-template-areas: "head" "map" "tiers"; }
+.simple-layout .section-head { grid-area: head; }
+.smap { grid-area: map; position: relative; margin-bottom: 28px; container-type: inline-size; }
+/* the land fades out toward the frame instead of stopping at a hard edge */
+.smap svg {
+  display: block; width: 100%; height: auto;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent), linear-gradient(to bottom, transparent, #000 9%, #000 91%, transparent);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent), linear-gradient(to bottom, transparent, #000 9%, #000 91%, transparent);
+  mask-composite: intersect;
+}
+.smap-land { fill: var(--map-land); }
+.smap-main, .smap-region { stroke: var(--wash); stroke-width: 1.2; stroke-linejoin: round; }
+.smap-main { fill: var(--map-main); }
+.smap-region { fill: var(--map-region); }
+.smap .pin-region::before { display: none; } /* filled in, so no pin */
+.tiers { grid-area: tiers; border-top: 1px solid var(--line-2); }
+.tier { padding-block: 18px 20px; border-bottom: 1px solid var(--line-2); }
+.tier-level { display: flex; align-items: center; gap: 12px; font-weight: 600; color: var(--ink); }
+.tier-places { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.tier-places li {
+  display: inline-flex; align-items: center; gap: 8px; padding: 5px 14px;
+  border: 1px solid var(--line-2); border-radius: 999px; background: var(--paper);
+  font-weight: 500; font-size: .9375rem;
+}
+.tier-places .tier-more { border-style: dashed; background: none; color: var(--muted); }
+.tier-note { margin-top: 10px; font-size: .9375rem; color: var(--muted); }
+.swatch { flex-shrink: 0; width: 10px; height: 10px; border-radius: 3px; }
+.swatch-main { background: var(--map-main); }
+.swatch-region { background: var(--map-region); }
+.swatch-far { width: 8px; height: 8px; border-radius: 50%; background: var(--blue); box-shadow: 0 0 0 3px var(--ring); }
+/* wide screens: heading and list beside the map, centred on it as one block */
+@media (min-width: 1100px) {
+  .simple-layout {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.45fr); column-gap: clamp(48px, 5vw, 96px);
+    grid-template-areas: ". map" "head map" "tiers map" ". map"; grid-template-rows: 1fr auto auto 1fr;
+  }
+  .smap { min-width: 0; margin-bottom: 0; }
+  .simple-layout .section-head { margin-bottom: 36px; }
+}
+
+/* the floating switch between the two designs, shown while the section is on screen;
+   dark on the light theme and light on the dark one */
+.design-switch {
+  position: fixed; z-index: 45; left: 50%; bottom: max(16px, env(safe-area-inset-bottom));
+  display: flex; align-items: center; gap: 4px; padding: 5px; border-radius: 999px;
+  background: var(--ink); color: var(--paper); box-shadow: 0 14px 34px -14px rgba(0, 22, 133, .6);
+  opacity: 0; visibility: hidden; transform: translate(-50%, 14px);
+  transition: opacity .25s, transform .3s var(--ease), visibility 0s .3s;
+}
+.design-switch.show { opacity: 1; visibility: visible; transform: translate(-50%, 0); transition-delay: 0s; }
+.design-switch-label { padding-inline: 12px 6px; font-size: .875rem; color: color-mix(in srgb, var(--paper) 72%, transparent); white-space: nowrap; }
+.design-switch button {
+  min-height: 40px; padding: 0 16px; border-radius: 999px;
+  font-weight: 600; font-size: .9375rem; color: var(--paper); white-space: nowrap;
+  transition: background-color .2s, color .2s;
+}
+.design-switch button:hover { background: color-mix(in srgb, var(--paper) 12%, transparent); }
+.design-switch button[aria-pressed="true"] { background: var(--paper); color: var(--ink); }
+.design-switch :focus-visible { outline-color: var(--blue); }
+@media (max-width: 479.98px) { .design-switch-label { display: none; } }
+
 /* ---------- FAQ ---------- */
 #faq { background: var(--paper); border-top: 0; }
 .faq-grid { display: grid; }
@@ -697,7 +775,7 @@ html[dir="rtl"] .live-url { text-align: right; }
 .reach-ico-wa { background: #25D366; color: #fff; }
 .reach-item h3 { font-size: 1.125rem; }
 .reach-item p { color: var(--muted); }
-.reach-item .reach-num { margin-top: 4px; font-size: 1.375rem; font-weight: 600; color: var(--navy); font-variant-numeric: tabular-nums; }
+.reach-item .reach-num { margin-top: 4px; font-size: 1.375rem; font-weight: 600; color: var(--heading); font-variant-numeric: tabular-nums; }
 html[dir="rtl"] .reach-item .reach-num { text-align: right; }
 .reach-meta { display: grid; gap: 10px; padding-block: 18px 22px; color: var(--muted); }
 .reach-meta li { display: flex; align-items: center; gap: 10px; }

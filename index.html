@@ -6,13 +6,31 @@
   <title>سكاي سوفت | نظام ERP وبرامج الأعمال من المنصورة</title>
   <meta name="description" content="تقدّم سكاي سوفت نظام سكاي سوفت ERP، ومنصة سكاي ريبورتس، وتطبيق سمارت سيلز للمندوبين، وسكاي ماركت للمتاجر الإلكترونية، وأنظمة لمحلات الملابس والمطاعم. من المنصورة، مصر.">
   <meta name="theme-color" content="#ffffff">
+  <!-- Picks the light or dark theme before the first paint: ?theme=dark|light for a quick look,
+       then the visitor's last choice, then their system setting. src/theme.js takes over after. -->
+  <script>
+    (function () {
+      var root = document.documentElement;
+      var theme = new URLSearchParams(location.search).get('theme');
+      try {
+        if (theme !== 'dark' && theme !== 'light') theme = localStorage.getItem('skysoft-theme');
+      } catch (e) {}
+      if (theme !== 'dark' && theme !== 'light') {
+        theme = window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      root.dataset.theme = theme;
+      document.querySelector('meta[name="theme-color"]').content = theme === 'dark' ? '#0A1226' : '#ffffff';
+    })();
+  </script>
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Sky Soft سكاي سوفت">
   <meta property="og:title" content="سكاي سوفت | نظام ERP وبرامج الأعمال من المنصورة">
   <meta property="og:description" content="سكاي سوفت ERP، وسكاي ريبورتس، وسمارت سيلز، وسكاي ماركت، وسكاي وير، وسكاي ريستورانت: برامج أعمال بالعربية والإنجليزية من المنصورة، مصر.">
   <meta property="og:locale" content="ar_EG">
   <meta property="og:locale:alternate" content="en_US">
-  <link rel="icon" href="/logo-sky.png" type="image/png">
+  <!-- the S from the Sky Soft logo, cut from the company's logo file -->
+  <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <!-- Alexandria (by Egyptian designer Mohamed Gaber) for headings; IBM Plex for text -->
