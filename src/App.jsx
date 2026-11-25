@@ -1,7 +1,6 @@
 import { useLang } from './i18n/LanguageContext.jsx';
 import Header from './components/Header.jsx';
 import Hero from './components/Hero.jsx';
-import Products from './components/Products.jsx';
 import Showcase from './components/Showcase.jsx';
 import About from './components/About.jsx';
 import Why from './components/Why.jsx';
@@ -19,9 +18,8 @@ export default function App() {
       <Header />
       <main id="main">
         <Hero />
-        <Products />
-        <Showcase />
         <About />
+        <Showcase />
         <Why />
         <Process />
         <Faq />

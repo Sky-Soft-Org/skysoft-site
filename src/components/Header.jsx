@@ -5,7 +5,7 @@ import { Brand } from './Logo.jsx';
 import Icon from './Icon.jsx';
 
 const NAV_LINKS = [
-  ['#products', 'nav.products'],
+  ['#live', 'label.live'],
   ['#about', 'nav.about'],
   ['#contact', 'nav.contact'],
 ];

@@ -14,12 +14,12 @@ export default function Footer() {
         </div>
         <div className="foot-col">
           <h2>{t('nav.products')}</h2>
-          <a href="#erp">{t('erp.title')}</a>
-          <a href="#reports">{t('nav.reports')}</a>
-          <a href="#sales">{t('sales.title')}</a>
-          <a href="#market">{t('p3.title')}</a>
-          <a href="#wear">{t('wear.title')}</a>
-          <a href="#restaurant">{t('rest.title')}</a>
+          <a href="#live">{t('erp.title')}</a>
+          <a href="#live">{t('nav.reports')}</a>
+          <a href="#live">{t('sales.title')}</a>
+          <a href="#live">{t('p3.title')}</a>
+          <a href="#live">{t('wear.title')}</a>
+          <a href="#live">{t('rest.title')}</a>
         </div>
         <div className="foot-col">
           <h2>{t('foot.company')}</h2>

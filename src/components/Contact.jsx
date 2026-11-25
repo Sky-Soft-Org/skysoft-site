@@ -33,14 +33,14 @@ export default function Contact() {
 
         <div className="reach">
           <div className="reach-item">
-            <span className="reach-ico reach-ico-wa"><Icon name="chat" /></span>
+            <span className="reach-ico reach-ico-wa"><Icon name="whatsapp" /></span>
             <div>
               <h3>{t('ch.whatsapp')}</h3>
               <p>{t('ch.whatsappSub')}</p>
               <p className="reach-num ltr">{COMPANY.phone}</p>
             </div>
             <a className="btn btn-primary" href={whatsappUrl(t('wa.hello'))} target="_blank" rel="noopener noreferrer">
-              <Icon name="chat" />
+              <Icon name="whatsapp" />
               <span>{t('cta.wa')}</span>
             </a>
           </div>

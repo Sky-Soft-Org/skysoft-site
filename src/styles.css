@@ -74,6 +74,7 @@ main [id] { scroll-margin-top: calc(var(--header-h) + 8px); }
 .num { direction: ltr; unicode-bidi: isolate; font-variant-numeric: tabular-nums; }
 .muted { color: var(--muted); }
 .ico { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+.ico-fill { fill: currentColor; stroke: none; }
 [dir="rtl"] .arrow { transform: scaleX(-1); }
 
 .skip-link {
@@ -124,8 +125,6 @@ p { text-wrap: pretty; }
 }
 .header.scrolled, .header.open { border-bottom-color: var(--line); }
 /* a thin strip of the ERP's sky sweep along the top edge */
-.header::before { content: ""; position: absolute; inset: 0 0 auto; height: 3px; background: linear-gradient(90deg, #01CDFE, #02A5EE 35%, #0454BF 75%, #00368D); }
-[dir="rtl"] .header::before { background: linear-gradient(270deg, #01CDFE, #02A5EE 35%, #0454BF 75%, #00368D); }
 .header-row { display: flex; align-items: center; gap: 24px; height: var(--header-h); }
 .brand { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; flex-shrink: 0; }
 .mark { width: 34px; height: 34px; border-radius: 9px; background: var(--sweep); display: grid; place-items: center; }
@@ -596,6 +595,9 @@ html[dir="rtl"] .live-url { text-align: right; }
 @keyframes flip-4-of-4 { 0%, 73% { opacity: 0; transform: scale(1.02); } 78%, 100% { opacity: 1; transform: none; } }
 
 /* ---------- Why ---------- */
+/* Why stays on paper so it lifts off the dark live band above */
+#why { background: var(--paper); }
+
 .why-grid { display: grid; }
 .why-grid li { padding-block: 24px; border-top: 1px solid var(--line); }
 .why-grid .ico { width: 24px; height: 24px; color: var(--blue); }
@@ -605,14 +607,23 @@ html[dir="rtl"] .live-url { text-align: right; }
 @media (min-width: 960px) { .why-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 56px; } .why-grid li { padding-block: 28px 8px; } }
 
 /* ---------- Process ---------- */
+/* Wash band between Why and FAQ so the three sections don't read as one block */
+#process {
+  background:
+    radial-gradient(ellipse 70% 55% at 0% 100%, rgba(1, 205, 254, .14), transparent 55%),
+    radial-gradient(ellipse 55% 45% at 100% 0%, rgba(4, 84, 191, .08), transparent 50%),
+    var(--wash);
+  border-top: 0;
+}
+
 .steps { display: grid; }
-.steps li { display: grid; grid-template-columns: 36px minmax(0, 1fr); column-gap: 12px; padding-block: 22px; border-top: 1px solid var(--line); }
+.steps li { display: grid; grid-template-columns: 36px minmax(0, 1fr); column-gap: 12px; padding-block: 22px; border-top: 1px solid var(--line-2); }
 .steps h3, .steps p { grid-column: 2; }
 .steps p { margin-top: 4px; color: var(--muted); }
 .step-num { grid-row: 1 / span 2; font-family: var(--font-display); font-weight: 600; font-size: 1.125rem; line-height: 1.15; color: var(--blue); }
 @media (min-width: 768px) {
   .steps { grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: 32px; }
-  .steps li { display: block; padding-block: 24px 0; border-top: 2px solid var(--line); }
+  .steps li { display: block; padding-block: 24px 0; border-top: 2px solid var(--line-2); }
   .steps li:first-child { border-top-color: var(--blue); }
   .step-num { display: block; margin-bottom: 14px; }
   .steps p { margin-top: 6px; }
@@ -633,6 +644,7 @@ html[dir="rtl"] .live-url { text-align: right; }
 }
 
 /* ---------- FAQ ---------- */
+#faq { background: var(--paper); border-top: 0; }
 .faq-grid { display: grid; }
 .section-head .text-link { display: inline-block; margin-top: 12px; }
 .faq { border-top: 1px solid var(--line); }
@@ -681,7 +693,7 @@ html[dir="rtl"] .live-url { text-align: right; }
 .reach-item .btn { grid-column: 1 / -1; margin-top: 16px; }
 .reach-ico { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 12px; background: var(--blue-tint); color: var(--blue); }
 .reach-ico .ico { width: 24px; height: 24px; }
-.reach-ico-wa { background: var(--sweep); color: #fff; }
+.reach-ico-wa { background: #25D366; color: #fff; }
 .reach-item h3 { font-size: 1.125rem; }
 .reach-item p { color: var(--muted); }
 .reach-item .reach-num { margin-top: 4px; font-size: 1.375rem; font-weight: 600; color: var(--navy); font-variant-numeric: tabular-nums; }
