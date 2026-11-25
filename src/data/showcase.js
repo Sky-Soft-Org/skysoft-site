@@ -12,12 +12,10 @@ import marketDesktopTop from '../assets/showcase/market-desktop-top.webp';
 import marketMobile from '../assets/showcase/market-mobile.webp';
 import marketMobileTop from '../assets/showcase/market-mobile-top.webp';
 import marketMobileBottom from '../assets/showcase/market-mobile-bottom.webp';
-import restDesktopHalls from '../assets/showcase/rest-desktop-halls.webp';
-import restDesktopTables from '../assets/showcase/rest-desktop-tables.webp';
-import restDesktopOrders from '../assets/showcase/rest-desktop-orders.webp';
-import restMobileHalls from '../assets/showcase/rest-mobile-halls.webp';
-import restMobileTables from '../assets/showcase/rest-mobile-tables.webp';
-import restMobileOrders from '../assets/showcase/rest-mobile-orders.webp';
+import restDesktop from '../assets/showcase/rest-desktop.webp';
+import restDesktopTop from '../assets/showcase/rest-desktop-top.webp';
+import restMobile from '../assets/showcase/rest-mobile.webp';
+import restMobileTop from '../assets/showcase/rest-mobile-top.webp';
 import reportsDesktopDashboard from '../assets/showcase/reports-desktop-dashboard.webp';
 import reportsDesktopCatalog from '../assets/showcase/reports-desktop-catalog.webp';
 import reportsDesktopItems from '../assets/showcase/reports-desktop-items.webp';
@@ -63,9 +61,11 @@ export const SHOWCASE = [
     id: 'restaurant', name: 'rest.title', kind: 'live.rest.kind', desc: 'live.rest.desc', open: 'live.openSignIn',
     url: 'https://rest-dev.skysoft-erb.com',
     seconds: 10.5,
-    // Halls, then Tables, then Orders, as a waiter would move through them
-    desktop: { src: restDesktopHalls, w: 1440, h: 900, frames: [restDesktopTables, restDesktopOrders] },
-    phone: { src: restMobileHalls, w: 560, h: 1212, frames: [restMobileTables, restMobileOrders] },
+    // The takeaway menu. The app keeps its bars, side menu and cart still and
+    // scrolls only the menu, so `top` is the whole first screen with a
+    // see-through window where the menu moves.
+    desktop: { src: restDesktop, w: 1440, h: 2367, top: restDesktopTop, topH: 900 },
+    phone: { src: restMobile, w: 560, h: 3590, top: restMobileTop, topH: 1212 },
   },
   {
     id: 'reports', name: 'nav.reports', kind: 'live.reports.kind', desc: 'live.reports.desc', open: 'live.openSignIn',
