@@ -2,8 +2,9 @@
    Sky Soft — homepage (imported by src/main.jsx)
    Colours come from the Sky Soft ERP itself: navy title text,
    the royal date banner, the cyan-to-royal splash sweep and its
-   pale sky background. Hairline structure, IBM Plex in Latin +
-   Arabic. Mobile-first: 480 / 640 / 768 / 960 / 1100.
+   pale sky background. Hairline structure. One family per script:
+   Plus Jakarta Sans for English, IBM Plex Sans Arabic for Arabic,
+   on one type scale. Mobile-first: 480 / 640 / 768 / 960 / 1100.
    ========================================================== */
 /* Brand colours: the same in both themes */
 :root {
@@ -39,6 +40,14 @@
   --map-land: #D4E5F1; /* land on the simple map */
   --map-main: #0454BF; /* Egypt and Saudi Arabia on the simple map */
   --map-region: #8DC1EA; /* Jordan and the UAE on the simple map */
+  /* the "systems at work" band: the ERP's pale sky, a shade deeper at the top */
+  --band-top: #D9EEFA;
+  --band-bottom: #EEF7FC;
+  --band-glow: rgba(1, 205, 254, .26);
+  --band-line: rgba(0, 54, 141, .16); /* rule over each product tab */
+  --shot-shadow: 0 2px 6px rgba(0, 22, 133, .06), 0 40px 80px -40px rgba(0, 54, 141, .45);
+  --bezel: #0A1A45; /* the phone's frame */
+  --bezel-ring: rgba(0, 22, 133, .1);
 }
 
 /* Dark theme: the ERP's navy, deepened to near black, with lighter blues so links and icons stay readable */
@@ -67,19 +76,40 @@
   --map-land: #1E2F52;
   --map-main: #4C9BFF;
   --map-region: #3A73C2;
+  --band-top: #0E1D3E;
+  --band-bottom: #0A1226;
+  --band-glow: rgba(1, 205, 254, .14);
+  --band-line: rgba(255, 255, 255, .14);
+  --shot-shadow: 0 48px 90px -40px rgba(0, 0, 0, .7);
+  --bezel: #050A18;
+  --bezel-ring: rgba(255, 255, 255, .16);
 }
 
 :root {
   --radius: 10px;
   --gutter: 16px;
   --header-h: 64px;
-  --font: "IBM Plex Sans", "IBM Plex Sans Arabic", system-ui, -apple-system, "Segoe UI", sans-serif;
-  /* Alexandria (Mohamed Gaber, Egypt) covers Arabic and Latin: headings and big numbers */
-  --font-display: "Alexandria", "IBM Plex Sans Arabic", "IBM Plex Sans", system-ui, sans-serif;
+  /* One family per script, used for headings and text alike; hierarchy comes from size and weight.
+     Plus Jakarta Sans: crisp, modern Latin with clear figures. IBM Plex Sans Arabic: built for
+     screens, steady in long text and in tables of numbers, and widely used on Saudi
+     government platforms, so it reads as familiar to clients in Egypt and the Gulf. */
+  --font-en: "Plus Jakarta Sans", "IBM Plex Sans Arabic", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-ar: "IBM Plex Sans Arabic", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font: var(--font-en);
+  /* Type scale (rem, so Arabic's larger root lifts every step together) */
+  --text-xs: .8125rem; /* 13: map labels, captions */
+  --text-sm: .9375rem; /* 15: navigation, chips, meta */
+  --text-base: 1rem; /* 16: body */
+  --text-md: 1.125rem; /* 18: intros under headings, small titles */
+  --text-lg: 1.25rem; /* 20 */
+  --text-xl: 1.5rem; /* 24 */
+  --text-h2: clamp(1.75rem, 1.3rem + 1.6vw, 2.5rem); /* 28 → 40 */
+  --text-h1: clamp(2.375rem, 1.4rem + 3.6vw, 3.75rem); /* 38 → 60 */
+  --text-stat: clamp(2rem, 1.6rem + 1.4vw, 2.75rem); /* the big numbers in About */
   --ease: cubic-bezier(.2, .8, .2, 1);
 }
-/* Arabic is the main language: Plex Arabic for text, set a step larger with more leading */
-html[lang="ar"] { --font: "IBM Plex Sans Arabic", "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif; font-size: 106.25%; }
+/* Arabic is the main language: Plex Arabic, set a step larger with more leading */
+html[lang="ar"] { --font: var(--font-ar); font-size: 106.25%; }
 @media (min-width: 640px) { :root { --gutter: 24px; } }
 @media (min-width: 960px) { :root { --gutter: 32px; --header-h: 72px; } }
 @media (min-width: 1280px) { :root { --gutter: 40px; } }
@@ -89,7 +119,7 @@ html[lang="ar"] { --font: "IBM Plex Sans Arabic", "IBM Plex Sans", system-ui, -a
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 body {
   font-family: var(--font);
-  font-size: 1rem;
+  font-size: var(--text-base);
   line-height: 1.6;
   color: var(--ink);
   background: var(--paper);
@@ -126,34 +156,32 @@ main [id] { scroll-margin-top: calc(var(--header-h) + 8px); }
 .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
 /* ---------- Type ---------- */
-h1, h2, h3 { font-family: var(--font-display); font-weight: 600; line-height: 1.2; letter-spacing: -.02em; text-wrap: balance; }
-h1 { font-size: clamp(2.25rem, 1.4rem + 3.4vw, 4rem); font-weight: 700; line-height: 1.08; letter-spacing: -.03em; }
-h2 { font-size: clamp(1.625rem, 1.3rem + 1.4vw, 2.375rem); }
-h3 { font-size: 1.125rem; letter-spacing: -.01em; }
+h1, h2, h3 { font-weight: 700; line-height: 1.2; letter-spacing: -.02em; text-wrap: balance; }
+h1 { font-size: var(--text-h1); line-height: 1.08; letter-spacing: -.035em; }
+h2 { font-size: var(--text-h2); line-height: 1.15; letter-spacing: -.025em; }
+h3 { font-size: var(--text-md); font-weight: 600; line-height: 1.35; letter-spacing: -.01em; }
 h1, h2 { color: var(--heading); }
-/* Arabic letters need zero tracking and taller lines; Alexandria's Arabic sits large, so h1 steps down */
-html[lang="ar"] :is(h1, h2, h3) { letter-spacing: 0; line-height: 1.45; }
-html[lang="ar"] h1 { font-size: clamp(2.125rem, 1.35rem + 3vw, 3.5rem); line-height: 1.35; }
-html[lang="ar"] :is(.kicker, .product-tag, .tab-text, .chip, .meter-label, .foot-col a, .foot-col span) { line-height: 1.6; }
+/* Arabic letters need zero tracking and taller lines */
+html[lang="ar"] :is(h1, h2, h3) { letter-spacing: 0; line-height: 1.5; }
+html[lang="ar"] :is(h1, h2) { line-height: 1.4; }
+html[lang="ar"] :is(.foot-col a, .foot-col span) { line-height: 1.6; }
 p { text-wrap: pretty; }
-.lead { margin-top: 20px; max-width: 34em; font-size: clamp(1.0625rem, 1rem + .3vw, 1.25rem); color: var(--muted); }
-.sub { margin-top: 14px; max-width: 38em; font-size: 1.0625rem; color: var(--muted); }
+.lead { margin-top: 20px; max-width: 34em; font-size: clamp(var(--text-md), 1rem + .3vw, var(--text-lg)); color: var(--muted); }
+.sub { margin-top: 14px; max-width: 38em; font-size: var(--text-md); color: var(--muted); }
 
 /* ---------- Buttons ---------- */
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
   min-height: 48px; padding: 12px 22px; border: 1px solid transparent; border-radius: var(--radius);
-  font-weight: 600; font-size: 1rem; line-height: 1.2; white-space: nowrap;
+  font-weight: 600; font-size: var(--text-base); line-height: 1.2; white-space: nowrap;
   transition: background-color .2s, border-color .2s, color .2s;
 }
 .btn-primary { background: var(--btn); color: #fff; }
 .btn-primary:hover { background: var(--btn-hover); }
 .btn-secondary { background: var(--paper); border-color: var(--line-strong); color: var(--ink); }
 .btn-secondary:hover { border-color: var(--outline-hover); background: var(--outline-hover-bg); }
-.btn-sm { min-height: 40px; padding: 8px 16px; font-size: .9375rem; }
-.btn-light { background: #fff; color: var(--navy); }
-.btn-light:hover { background: #E1F2FC; }
-.btn-light .ico { width: 18px; height: 18px; }
+.btn-sm { min-height: 40px; padding: 8px 16px; font-size: var(--text-sm); }
+.btn .ico { width: 18px; height: 18px; }
 
 /* ---------- Header ---------- */
 .header {
@@ -177,13 +205,13 @@ p { text-wrap: pretty; }
 .actions { display: flex; align-items: center; gap: 4px; margin-inline-start: auto; }
 .lang-btn {
   display: inline-flex; align-items: center; gap: 7px; min-height: 44px; padding: 0 12px;
-  border-radius: var(--radius); font-weight: 500; font-size: .9375rem; color: var(--ink-2);
+  border-radius: var(--radius); font-weight: 500; font-size: var(--text-sm); color: var(--ink-2);
   transition: color .2s, background-color .2s;
 }
 .lang-btn:hover { color: var(--blue); background: var(--hover-bg); }
 .lang-btn .ico { width: 18px; height: 18px; }
-.lang-btn [lang="ar"] { font-family: "IBM Plex Sans Arabic", sans-serif; }
-.lang-btn [lang="en"] { font-family: "IBM Plex Sans", sans-serif; }
+.lang-btn [lang="ar"] { font-family: var(--font-ar); }
+.lang-btn [lang="en"] { font-family: var(--font-en); }
 .lang-short { display: none; }
 .theme-btn {
   display: grid; place-items: center; width: 44px; height: 44px; border-radius: var(--radius);
@@ -218,14 +246,14 @@ p { text-wrap: pretty; }
     background: var(--paper); border-bottom: 1px solid var(--line);
     box-shadow: 0 16px 24px -20px rgba(14, 26, 51, .35);
   }
-  .nav a:not(.btn) { display: block; padding: 14px 0; border-bottom: 1px solid var(--line); font-weight: 500; font-size: 1.0625rem; color: var(--ink-2); }
+  .nav a:not(.btn) { display: block; padding: 14px 0; border-bottom: 1px solid var(--line); font-weight: 500; font-size: var(--text-md); color: var(--ink-2); }
   .nav a[aria-current]:not(.btn) { color: var(--blue); font-weight: 600; }
   .nav .nav-cta { margin-top: 20px; }
 }
 
 @media (min-width: 960px) {
   .nav { display: flex; align-items: center; gap: 28px; margin-inline-start: auto; }
-  .nav a { font-weight: 500; font-size: .9375rem; color: var(--ink-2); transition: color .2s; }
+  .nav a { font-weight: 500; font-size: var(--text-sm); color: var(--ink-2); transition: color .2s; }
   /* 44px-tall tap area: iPads in landscape get this desktop menu and use touch */
   .nav a { white-space: nowrap; padding-block: 10px; }
   .nav a:hover { color: var(--blue); }
@@ -285,7 +313,7 @@ p { text-wrap: pretty; }
 .erp-title {
   display: flex; align-items: center; gap: 6px; padding: 6px 10px;
   background: #F7FBFE; border-bottom: 1px solid var(--line);
-  color: var(--blue); font-family: "IBM Plex Sans", sans-serif; letter-spacing: .04em;
+  color: var(--blue); font-family: var(--font-en); letter-spacing: .04em;
   direction: ltr; /* Windows draws the title bar left-to-right even for Arabic apps */
 }
 .erp-title-mark { width: 15px; height: 15px; }
@@ -311,10 +339,10 @@ p { text-wrap: pretty; }
   background: radial-gradient(ellipse at 50% 42%, #fff 0%, #F5FBFE 50%, #E2F1FA 100%);
 }
 .erp-mark { width: clamp(64px, 10vw, 104px); height: auto; filter: drop-shadow(0 8px 10px rgba(4, 84, 191, .28)); }
-.erp-word { font-family: "IBM Plex Sans", sans-serif; font-weight: 600; font-size: 13px; letter-spacing: .22em; color: var(--blue); direction: ltr; }
+.erp-word { font-family: var(--font-en); font-weight: 600; font-size: 13px; letter-spacing: .22em; color: var(--blue); direction: ltr; }
 .erp-word b { font-weight: 500; color: #8A96A3; } /* the logo's silver */
 .erp-side { display: flex; flex-direction: column; min-width: 0; background: #F4FAFF; border-inline-start: 1px solid var(--line); }
-.erp-day { padding: 8px 10px; font-family: var(--font-display); background: linear-gradient(160deg, var(--royal), var(--blue-deep)); color: #fff; font-weight: 600; font-size: 14px; text-align: center; }
+.erp-day { padding: 8px 10px; background: linear-gradient(160deg, var(--royal), var(--blue-deep)); color: #fff; font-weight: 600; font-size: 14px; text-align: center; }
 .erp-date { padding: 6px 10px 8px; background: #E7EFFC; color: var(--navy); font-weight: 600; font-size: 15px; text-align: center; font-variant-numeric: tabular-nums; direction: ltr; }
 .erp-fav { padding: 4px 10px; background: #C9DCF3; color: var(--royal); font-weight: 500; }
 .erp-side ul { display: grid; gap: 7px; padding: 9px 10px; color: var(--navy); font-weight: 500; }
@@ -349,24 +377,9 @@ p { text-wrap: pretty; }
 .section { padding-block: clamp(64px, 9vw, 120px); border-top: 1px solid var(--line); }
 .section-head { max-width: 40rem; margin-bottom: clamp(32px, 4vw, 56px); }
 /* underlined text link (the FAQ's "ask us something else") */
-.text-link { display: inline-block; margin-top: 18px; }
-.modules { gap: 12px 32px; align-content: start; }
-@media (min-width: 640px) { .modules { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (min-width: 960px) {
-  .flagship { grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 56px; align-items: center; }
-  .modules { padding-inline-start: 48px; border-inline-start: 1px solid var(--line-2); }
-}
-
-/* The five other products: a rule over each column, 1 → 2 → 3 → 5 across */
-.products { display: grid; gap: 40px 32px; }
-.product { display: flex; flex-direction: column; padding-top: 24px; border-top: 2px solid var(--line); }
-.product h3 { margin-top: 18px; font-size: 1.25rem; }
-.product-tag { margin-top: 2px; color: var(--muted); font-size: .9375rem; }
-.product-desc { margin-top: 16px; color: var(--ink-2); max-width: 36em; }
-.product .checks { margin-block: 20px 24px; }
 .text-link {
-  margin-top: auto; margin-bottom: -9px; padding-block: 9px;
-  align-self: flex-start; font-weight: 600; color: var(--blue);
+  display: inline-block; margin-top: 18px; margin-bottom: -9px; padding-block: 9px;
+  font-weight: 600; color: var(--blue);
   text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px;
   transition: color .2s;
 }
@@ -378,91 +391,102 @@ p { text-wrap: pretty; }
   box-shadow: 0 1px 2px rgba(14, 26, 51, .04), 0 24px 48px -32px rgba(14, 26, 51, .28);
 }
 .screen-bar { display: flex; justify-content: center; padding: 9px 14px; background: var(--wash); border-bottom: 1px solid var(--line); }
-.screen-bar span { font-size: .8125rem; color: var(--muted); }
+.screen-bar span { font-size: var(--text-xs); line-height: 1.4; color: var(--muted); }
 
 /* ---------- See our systems at work ---------- */
-/* The page's one dark band, in the ERP's navy, so the real screens stand out.
-   Each product plays in turn: its page scrolls inside a computer and a phone
-   while a cyan line fills over its tab, then the next product comes up. */
+/* A light band in the ERP's pale sky, a shade deeper than the rest of the page, with the
+   hero's cyan glowing up behind the screens. Each product plays in turn: its page scrolls
+   inside a computer and a phone while a blue line fills over its tab, then the next one comes up. */
 .live {
   /* clip (not just hidden) so the glow can't make the band scrollable sideways when a tab takes focus */
   position: relative; isolation: isolate; overflow: hidden; overflow: clip;
-  border-top: 0; color: #fff;
-  background: linear-gradient(165deg, #000C52 0%, var(--navy) 55%, #00368D 100%);
+  --pad: clamp(40px, 6vh, 88px);
+  padding-block: var(--pad); border-top: 0;
+  background: linear-gradient(180deg, var(--band-top) 0%, var(--band-bottom) 100%);
 }
 /* a soft sky glow behind the screens, like the sweep in the hero */
 .live::before {
   content: ""; position: absolute; z-index: -1;
   width: 1300px; aspect-ratio: 1; border-radius: 50%;
   inset-inline-end: -460px; bottom: -820px;
-  background: radial-gradient(closest-side, rgba(1, 205, 254, .3), rgba(1, 205, 254, 0));
+  background: radial-gradient(closest-side, var(--band-glow), transparent);
 }
-.live h2, .live h3 { color: #fff; }
-.live .sub { color: #C9D8F5; }
-.live :focus-visible { outline-color: #8FE3FF; }
 
-.live-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 20px 40px; margin-bottom: clamp(28px, 3.5vw, 44px); }
+.live-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 20px 40px; margin-bottom: 24px; }
 .live-head .section-head { margin-bottom: 0; }
 .live-toggle {
   display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 18px;
-  border: 1px solid rgba(255, 255, 255, .4); border-radius: 999px;
-  font-weight: 500; font-size: .9375rem; color: #fff;
-  transition: border-color .2s, background-color .2s;
+  border: 1px solid var(--line-strong); border-radius: 999px; background: var(--paper);
+  font-weight: 500; font-size: var(--text-sm); color: var(--ink-2);
+  transition: border-color .2s, background-color .2s, color .2s;
 }
-.live-toggle:hover { border-color: #fff; background: rgba(255, 255, 255, .08); }
+.live-toggle:hover { border-color: var(--outline-hover); background: var(--outline-hover-bg); color: var(--ink); }
 .live-toggle .ico { width: 15px; height: 15px; fill: currentColor; stroke-width: 2.25; }
 
-/* product tabs: a rule over each; the one on show fills with cyan as it plays */
+/* product tabs: a rule over each; the one on show fills with blue as it plays */
 .live-tabs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 24px; }
-@media (min-width: 768px) { .live-tabs { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 28px; } }
-@media (min-width: 1100px) { .live-tabs { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 24px; } }
-@media (min-width: 1280px) { .live-tabs { grid-template-columns: repeat(6, minmax(0, 1fr)); column-gap: 20px; } }
+@media (min-width: 640px) { .live-tabs { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 28px; } }
+@media (min-width: 960px) { .live-tabs { grid-template-columns: repeat(6, minmax(0, 1fr)); column-gap: 20px; } }
 .live-tab {
   position: relative; display: block; width: 100%; text-align: start;
-  padding: 16px 0 18px; border-top: 2px solid rgba(255, 255, 255, .2);
-  color: rgba(255, 255, 255, .68); transition: color .2s, border-color .2s;
+  padding: 14px 0 16px; border-top: 2px solid var(--band-line);
+  color: var(--muted); transition: color .2s, border-color .2s;
 }
-.live-tab:hover, .live-tab[aria-selected="true"] { color: #fff; }
-.live-tab[aria-selected="true"] { border-top-color: #01CDFE; }
-.live[data-auto] .live-tab[aria-selected="true"] { border-top-color: rgba(255, 255, 255, .45); }
+.live-tab:hover, .live-tab[aria-selected="true"] { color: var(--heading); }
+.live-tab[aria-selected="true"] { border-top-color: var(--blue); }
+.live[data-auto] .live-tab[aria-selected="true"] { border-top-color: var(--band-line); }
 .live-tab:focus-visible { outline-offset: 2px; }
-.live-tab-name { display: block; font-family: var(--font-display); font-weight: 600; font-size: 1.125rem; line-height: 1.4; }
-.live-tab-kind { display: block; margin-top: 2px; font-size: .875rem; color: rgba(255, 255, 255, .68); }
+.live-tab-name { display: block; font-weight: 700; font-size: var(--text-md); line-height: 1.4; }
+.live-tab-kind { display: block; margin-top: 2px; font-size: var(--text-sm); color: var(--muted); }
+/* six tabs in one row on narrow desktops: a step smaller so the names stay on one line */
+@media (min-width: 960px) and (max-width: 1279.98px) { .live-tab-name { font-size: var(--text-base); } .live-tab-kind { font-size: var(--text-xs); } }
+/* phones: names only, so the six tabs take three short rows (the panel says what each one is) */
+@media (max-width: 639.98px) { .live-tab { padding-block: 12px 14px; } .live-tab-kind { display: none; } }
 .live-progress {
   position: absolute; top: -2px; inset-inline: 0; height: 2px;
-  background: #01CDFE; transform: scaleX(0); transform-origin: left;
+  background: var(--blue); transform: scaleX(0); transform-origin: left;
   animation: liveFill var(--dur) linear forwards paused;
 }
 [dir="rtl"] .live-progress { transform-origin: right; }
 .live[data-playing] .live-progress { animation-play-state: running; }
 @keyframes liveFill { to { transform: scaleX(1); } }
 
-.live-body { display: grid; gap: 36px; margin-top: clamp(28px, 3.5vw, 48px); }
-.live-info h3 { font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem); }
-.live-url { margin-top: 2px; font-size: .9375rem; color: #8FE3FF; }
+.live-body { display: grid; gap: 28px; margin-top: 28px; }
+.live-info h3 { font-size: clamp(var(--text-xl), 1.2rem + 1vw, 2rem); font-weight: 700; color: var(--heading); }
+.live-url { margin-top: 2px; font-size: var(--text-sm); color: var(--blue); }
 html[dir="rtl"] .live-url { text-align: right; }
-.live-desc { margin-top: 16px; max-width: 30em; font-size: 1.0625rem; color: #DCE6FA; }
+.live-desc { margin-top: 16px; max-width: 30em; font-size: var(--text-md); color: var(--ink-2); }
 .live-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; margin-top: 28px; }
 .live-ask {
-  padding-block: 9px; font-weight: 600; color: #fff;
+  padding-block: 9px; font-weight: 600; color: var(--blue);
   text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 5px;
+  transition: color .2s;
 }
-.live-ask:hover { text-decoration-thickness: 2px; }
+.live-ask:hover { color: var(--blue-deep); text-decoration-thickness: 2px; }
 
-/* the screens: a browser window with a phone standing in front of its corner */
-.live-stage { position: relative; padding-inline-end: 15%; padding-bottom: 7%; }
-.live-stage-solo { padding-inline-end: 0; padding-bottom: 0; }
-.live-browser { border-color: rgba(255, 255, 255, .16); box-shadow: 0 48px 90px -40px rgba(0, 0, 0, .7); }
+/* The screens: a browser window with a phone standing in front of its corner, or one device
+   alone. Each kind has its own shape, so from tablets up its width is worked out from the height
+   it may take (--stage-h), as (height - fixed part) x ratio:
+     browser + phone: browser 85% wide at 1440:900 + its 40px bar + a 7% overhang for the phone
+     Windows app: 1024:549, never past its real 1024px width
+     phone held sideways: 1024:526 inside a 12px/16px frame, 720px at most */
+.live-stage { --stage-ratio: 1.663; --stage-fixed: 40px; --stage-max: 2000px; position: relative; }
+/* margins in % follow the stage's own width, so the layout holds at any stage size */
+.live-stage-browser .live-browser { width: 85%; margin-bottom: 7%; }
+.live-stage-solo { --stage-ratio: 1.6; }
+.live-stage-app { --stage-ratio: 1.865; --stage-fixed: 0px; --stage-max: 1024px; }
+.live-stage-landscape { --stage-ratio: 1.947; --stage-fixed: 8px; --stage-max: 720px; }
+.live-browser { box-shadow: var(--shot-shadow); }
 /* Sky Soft ERP: real Windows window capture, no fake browser chrome */
 .live-app {
   overflow: hidden; border-radius: 10px;
-  box-shadow: 0 48px 90px -40px rgba(0, 0, 0, .7), 0 0 0 1px rgba(255, 255, 255, .16);
+  box-shadow: var(--shot-shadow), 0 0 0 1px var(--line-2);
 }
 .shot-app { aspect-ratio: 1024 / 549; }
 .phone {
   position: absolute; inset-inline-end: 0; bottom: 0; width: 24%;
-  padding: 7px; border-radius: 30px; background: var(--ink);
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, .18), 0 30px 60px -24px rgba(0, 0, 0, .75);
+  padding: 7px; border-radius: 30px; background: var(--bezel);
+  box-shadow: 0 0 0 1px var(--bezel-ring), 0 30px 60px -24px rgba(0, 22, 80, .55);
 }
 /* Smart Sales: phone held sideways, centered on the stage */
 .phone-landscape {
@@ -484,16 +508,24 @@ html[dir="rtl"] .live-url { text-align: right; }
 
 /* phones: the browser takes the full width and the phone stands bigger in front of it */
 @media (max-width: 639.98px) {
-  .live-stage { padding-inline-end: 0; padding-bottom: 32%; }
-  .live-stage-solo { padding-bottom: 0; }
+  .live-stage-browser .live-browser { width: 100%; margin-bottom: 32%; }
   .phone { width: 36%; padding: 5px; border-radius: 22px; }
   .phone-landscape { width: 100%; padding: 8px 12px; border-radius: 22px; }
   .shot-phone { border-radius: 17px; }
   .shot-phone-landscape { border-radius: 14px; }
 }
-@media (max-width: 1099.98px) { .live-stage { order: -1; } }
-@media (min-width: 1100px) {
-  .live-body { grid-template-columns: minmax(0, 1fr) minmax(0, 2.6fr); gap: clamp(48px, 5vw, 96px); align-items: center; }
+/* Up to 1279px the screens sit over the words, as wide as the page allows */
+@media (max-width: 1279.98px) { .live-stage { order: -1; } }
+/* From tablets up the screens are big enough to read, yet always fit in the window on their
+   own: as tall as the window under the header (less 48px of air), between 360px and 620px */
+@media (min-width: 640px) {
+  .live { --stage-h: clamp(360px, 100svh - var(--header-h) - 48px, 620px); }
+  .live-stage { justify-self: center; width: min(100%, var(--stage-max), (var(--stage-h) - var(--stage-fixed)) * var(--stage-ratio)); }
+}
+/* Wide screens: the words beside the screens, which take up to 68% of the row */
+@media (min-width: 1280px) {
+  .live-body { container-type: inline-size; grid-template-columns: minmax(0, 1fr) auto; gap: clamp(40px, 4vw, 80px); align-items: center; }
+  .live-stage { width: min(68cqw, var(--stage-max), (var(--stage-h) - var(--stage-fixed)) * var(--stage-ratio)); }
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -522,7 +554,7 @@ html[dir="rtl"] .live-url { text-align: right; }
 @keyframes flip-4-of-4 { 0%, 73% { opacity: 0; transform: scale(1.02); } 78%, 100% { opacity: 1; transform: none; } }
 
 /* ---------- Why ---------- */
-/* Why stays on paper so it lifts off the dark live band above */
+/* Why stays on paper so it lifts off the sky band above */
 #why { background: var(--paper); }
 
 .why-grid { display: grid; }
@@ -547,7 +579,7 @@ html[dir="rtl"] .live-url { text-align: right; }
 .steps li { display: grid; grid-template-columns: 36px minmax(0, 1fr); column-gap: 12px; padding-block: 22px; border-top: 1px solid var(--line-2); }
 .steps h3, .steps p { grid-column: 2; }
 .steps p { margin-top: 4px; color: var(--muted); }
-.step-num { grid-row: 1 / span 2; font-family: var(--font-display); font-weight: 600; font-size: 1.125rem; line-height: 1.15; color: var(--blue); }
+.step-num { grid-row: 1 / span 2; font-weight: 700; font-size: var(--text-md); line-height: 1.15; color: var(--blue); }
 @media (min-width: 768px) {
   .steps { grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: 32px; }
   .steps li { display: block; padding-block: 24px 0; border-top: 2px solid var(--line-2); }
@@ -558,13 +590,13 @@ html[dir="rtl"] .live-url { text-align: right; }
 
 /* ---------- About ---------- */
 .about-grid { display: grid; gap: 40px; }
-.about-copy p { margin-top: 16px; max-width: 36em; font-size: 1.0625rem; color: var(--ink-2); }
+.about-copy p { margin-top: 16px; max-width: 36em; font-size: var(--text-md); color: var(--ink-2); }
 .about-copy h2 + p { margin-top: 20px; }
 .facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--line); }
 .facts > div { display: flex; flex-direction: column-reverse; justify-content: flex-end; gap: 2px; padding-block: 24px; padding-inline-end: 20px; border-bottom: 1px solid var(--line); }
 .facts > div:nth-child(even) { padding-inline: 24px 0; border-inline-start: 1px solid var(--line); }
-.facts dd { font-family: var(--font-display); font-size: clamp(1.75rem, 1.4rem + 1.4vw, 2.5rem); font-weight: 600; line-height: 1.15; letter-spacing: -.02em; }
-.facts dt { color: var(--muted); font-size: .9375rem; }
+.facts dd { font-size: var(--text-stat); font-weight: 700; line-height: 1.15; letter-spacing: -.03em; color: var(--heading); }
+.facts dt { color: var(--muted); font-size: var(--text-sm); }
 @media (min-width: 960px) {
   .about-grid { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 72px; align-items: center; }
   .facts > div { padding-block: 32px; }
@@ -572,37 +604,52 @@ html[dir="rtl"] .live-url { text-align: right; }
 
 /* ---------- Clients ---------- */
 /* Two designs while the team picks one (Clients.jsx): the simple map and the dotted map.
-   Both show how many clients each place has only as a level: Egypt and Saudi Arabia stand out,
-   then the rest of the Middle East, then the countries further away.
-   Positions are map directions, so nothing on the maps mirrors in Arabic. */
-.clients { background: var(--wash); border-top: 0; }
+   Both share one layout that fits on a single screen: the heading and the list of places
+   beside a map whose size comes from the screen's height. Places show how many clients they
+   have only as a level: Egypt and Saudi Arabia stand out, then the rest of the Middle East,
+   then the countries further away. Positions are map directions, so nothing on the maps
+   mirrors in Arabic. */
+.clients {
+  --pad: clamp(36px, 6vh, 80px);
+  /* the tallest the map may be; wider screens raise it below */
+  --map-h: min(34svh, 360px);
+  --map-bg: var(--paper); /* the halo round map labels */
+  padding-block: var(--pad);
+}
+.clients-layout { display: grid; row-gap: 24px; grid-template-areas: "head" "map" "tiers"; }
+.clients-layout .section-head { grid-area: head; margin-bottom: 0; }
+/* Each map is as wide as its column, or narrower so its height stays within --map-h.
+   --ratio is its width over its height, set in the component. Pins sit in % of this box. */
+.smap, .map {
+  grid-area: map; justify-self: center; align-self: center; position: relative; min-width: 0;
+  width: min(100%, var(--map-h) * var(--ratio)); container-type: inline-size;
+}
 
-/* the dotted map: a dotted world on the ERP's pale sky, Egypt and Saudi Arabia lit in the
-   splash screen's cyan-to-royal sweep, brightest at Mansoura */
-/* at most 150vh wide, so the whole map (about 1.85:1) fits on a wide but short screen */
-.map { position: relative; overflow: hidden; container-type: inline-size; max-width: min(100%, 150vh); margin-inline: auto; }
+/* the dotted map: a dotted world, Egypt and Saudi Arabia lit in the splash screen's
+   cyan-to-royal sweep, brightest at Mansoura */
+.map { overflow: hidden; }
 .map-world { position: relative; }
 .map svg { width: 100%; height: auto; }
 .map-land, .map-main { fill: none; stroke-linecap: round; }
 .map-land { stroke: var(--map-dot); stroke-width: 2.2; }
 .map-main { stroke-width: 3.2; }
 
-.pin { --gap: 14px; position: absolute; width: 0; height: 0; }
+.pin { --gap: 12px; position: absolute; width: 0; height: 0; }
 .pin-main { --gap: 6px; } /* no dot: the name sits right against the lit-up land */
-.pin-far { --gap: 11px; }
-/* a blue dot in a ring of the page's sky; places with fewer clients get a smaller one */
+.pin-far { --gap: 10px; }
+/* a blue dot in a soft ring; places with fewer clients get a smaller one */
 .pin:not(.pin-main)::before {
-  content: ""; position: absolute; left: -6px; top: -6px; width: 12px; height: 12px; border-radius: 50%;
-  background: var(--blue); box-shadow: 0 0 0 2.5px var(--wash), 0 0 0 7px var(--ring);
+  content: ""; position: absolute; left: -5px; top: -5px; width: 10px; height: 10px; border-radius: 50%;
+  background: var(--blue); box-shadow: 0 0 0 2px var(--map-bg), 0 0 0 6px var(--ring);
 }
-.pin-far::before { left: -4px; top: -4px; width: 8px; height: 8px; box-shadow: 0 0 0 2px var(--wash), 0 0 0 4.5px var(--ring); }
+.pin-far::before { left: -4px; top: -4px; width: 8px; height: 8px; box-shadow: 0 0 0 2px var(--map-bg), 0 0 0 4.5px var(--ring); }
 .pin-text {
   position: absolute; white-space: nowrap;
-  font-size: clamp(.8125rem, 1.15cqi, 1.0625rem); font-weight: 600; line-height: 1.3; color: var(--ink);
-  /* a halo of the page colour keeps names readable over the dots */
-  text-shadow: 1px 1px 0 var(--wash), -1px -1px 0 var(--wash), 1px -1px 0 var(--wash), -1px 1px 0 var(--wash), 0 0 6px var(--wash);
+  font-size: var(--text-xs); font-weight: 600; line-height: 1.3; color: var(--ink);
+  /* a halo of the page colour keeps names readable over the land */
+  text-shadow: 1px 1px 0 var(--map-bg), -1px -1px 0 var(--map-bg), 1px -1px 0 var(--map-bg), -1px 1px 0 var(--map-bg), 0 0 6px var(--map-bg);
 }
-.pin-main .pin-text { font-family: var(--font-display); font-size: clamp(.9375rem, 1.4cqi, 1.3125rem); font-weight: 600; color: var(--heading); }
+.pin-main .pin-text { font-size: clamp(var(--text-sm), 1.6cqi, var(--text-md)); font-weight: 700; color: var(--heading); }
 /* which side of the pin the name sits on (inset is top right bottom left) */
 .at-center .pin-text { inset: 0 auto auto 0; transform: translate(-50%, -50%); text-align: center; }
 .at-up .pin-text { inset: auto auto var(--gap) 0; transform: translateX(-50%); text-align: center; }
@@ -610,9 +657,9 @@ html[dir="rtl"] .live-url { text-align: right; }
 .at-left .pin-text { inset: 0 var(--gap) auto auto; transform: translateY(-50%); text-align: right; }
 .at-right .pin-text { inset: 0 auto auto var(--gap); transform: translateY(-50%); text-align: left; }
 
-/* phones: the map zooms in from Brazil to the Gulf (PHONE_VIEW in src/data/clients.js) */
+/* phones: the dotted map zooms in from Brazil to the Gulf (PHONE_VIEW in src/data/clients.js) */
 @media (max-width: 767.98px) {
-  .map { aspect-ratio: var(--ratio); }
+  .map { width: min(100%, var(--map-h) * var(--phone-ratio)); aspect-ratio: var(--phone-ratio); }
   .map-world { position: absolute; left: 0; top: 0; width: calc(var(--zoom) * 100%); transform: translate(var(--shift-x), var(--shift-y)); }
   .sm-center .pin-text { inset: 0 auto auto 0; transform: translate(-50%, -50%); text-align: center; }
   .sm-up .pin-text { inset: auto auto var(--gap) 0; transform: translateX(-50%); text-align: center; }
@@ -621,49 +668,8 @@ html[dir="rtl"] .live-url { text-align: right; }
   .sm-right .pin-text { inset: 0 auto auto var(--gap); transform: translateY(-50%); text-align: left; }
 }
 
-/* the key: the same places in words, one column per region */
-.key { display: grid; gap: 32px 40px; margin-top: clamp(24px, 3.5vw, 48px); }
-.key-group { padding-top: 20px; border-top: 2px solid var(--line-2); }
-.key-group:first-child { border-top-color: var(--blue); }
-.key h3 { display: flex; align-items: flex-start; gap: 10px; font-size: 1.0625rem; }
-/* each mark takes 24px across (its ring included) and centres on the heading's first line */
-.key-mark {
-  flex-shrink: 0; width: 12px; height: 12px; border-radius: 50%;
-  margin: 6px 6px 0; margin: calc(.5lh - 6px) 6px 0;
-  background: var(--blue); box-shadow: 0 0 0 2.5px var(--wash), 0 0 0 6px var(--ring);
-}
-/* three dots of the lit-up land */
-.key-main {
-  width: 16px; height: 14px; border-radius: 0; box-shadow: none;
-  margin: 5px 4px 0; margin: calc(.5lh - 7px) 4px 0;
-  background:
-    radial-gradient(circle at 4px 3.5px, #01CDFE 2.5px, transparent 3px),
-    radial-gradient(circle at 12px 3.5px, #02A5EE 2.5px, transparent 3px),
-    radial-gradient(circle at 8px 10.5px, #0454BF 2.5px, transparent 3px);
-}
-.key-far {
-  width: 8px; height: 8px; margin: 8px 8px 0; margin: calc(.5lh - 4px) 8px 0;
-  box-shadow: 0 0 0 2px var(--wash), 0 0 0 4.5px var(--ring);
-}
-.key-level { display: flex; align-items: center; gap: 10px; margin-top: 6px; font-size: .9375rem; color: var(--muted); }
-.key ul { margin-top: 10px; }
-.key li { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding-block: 11px; border-bottom: 1px solid var(--line-2); }
-.key li b { font-weight: 600; }
-.key li span { font-size: .9375rem; color: var(--muted); text-align: end; }
-.key .key-more { color: var(--muted); }
-@media (min-width: 768px) { .key { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-
-/* How many clients, as 3, 2 or 1 filled bars; they fill from the reading start, so from the right in Arabic */
-.level { display: inline-flex; gap: 3px; flex-shrink: 0; }
-.level i { width: 14px; height: 6px; border-radius: 3px; background: var(--line-2); }
-.level-3 i, .level-2 i:nth-child(-n + 2), .level-1 i:first-child { background: var(--blue); }
-
-/* the simple map: solid shapes from Brazil to the Gulf, no borders drawn, beside the places
-   listed from most clients to fewest; the swatches in the list match the map */
-.simple-layout { display: grid; grid-template-areas: "head" "map" "tiers"; }
-.simple-layout .section-head { grid-area: head; }
-.smap { grid-area: map; position: relative; margin-bottom: 28px; container-type: inline-size; }
-/* the land fades out toward the frame instead of stopping at a hard edge */
+/* the simple map: solid shapes from Brazil to the Gulf, no borders drawn;
+   the land fades out toward the frame instead of stopping at a hard edge */
 .smap svg {
   display: block; width: 100%; height: auto;
   -webkit-mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent), linear-gradient(to bottom, transparent, #000 9%, #000 91%, transparent);
@@ -672,34 +678,77 @@ html[dir="rtl"] .live-url { text-align: right; }
   mask-composite: intersect;
 }
 .smap-land { fill: var(--map-land); }
-.smap-main, .smap-region { stroke: var(--wash); stroke-width: 1.2; stroke-linejoin: round; }
+.smap-main, .smap-region { stroke: var(--map-bg); stroke-width: 1.2; stroke-linejoin: round; }
 .smap-main { fill: var(--map-main); }
 .smap-region { fill: var(--map-region); }
 .smap .pin-region::before { display: none; } /* filled in, so no pin */
+
+/* the list: one row per level, most clients first, the places as small tags */
 .tiers { grid-area: tiers; border-top: 1px solid var(--line-2); }
-.tier { padding-block: 18px 20px; border-bottom: 1px solid var(--line-2); }
-.tier-level { display: flex; align-items: center; gap: 12px; font-weight: 600; color: var(--ink); }
-.tier-places { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.tier { padding-block: 14px; border-bottom: 1px solid var(--line-2); }
+.tier-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 2px 16px; }
+.tier-level { display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: var(--text-sm); color: var(--ink); }
+.tier-note { font-size: var(--text-xs); color: var(--muted); }
+.tier-places { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; margin-top: 10px; }
 .tier-places li {
-  display: inline-flex; align-items: center; gap: 8px; padding: 5px 14px;
+  display: inline-flex; align-items: center; gap: 8px; min-height: 32px; padding: 0 12px;
   border: 1px solid var(--line-2); border-radius: 999px; background: var(--paper);
-  font-weight: 500; font-size: .9375rem;
+  font-weight: 500; font-size: var(--text-sm); line-height: 1.3;
 }
-.tier-places .tier-more { border-style: dashed; background: none; color: var(--muted); }
-.tier-note { margin-top: 10px; font-size: .9375rem; color: var(--muted); }
+.tier-places .tier-more { padding-inline: 4px; border: 0; background: none; font-weight: 400; color: var(--muted); }
+
+/* How many clients, as 3, 2 or 1 filled bars; they fill from the reading start, so from the right in Arabic */
+.level { display: inline-flex; gap: 3px; flex-shrink: 0; }
+.level i { width: 14px; height: 6px; border-radius: 3px; background: var(--line-2); }
+.level-3 i, .level-2 i:nth-child(-n + 2), .level-1 i:first-child { background: var(--blue); }
+
+/* swatches beside each place, drawn as the place looks on the map in use */
 .swatch { flex-shrink: 0; width: 10px; height: 10px; border-radius: 3px; }
 .swatch-main { background: var(--map-main); }
 .swatch-region { background: var(--map-region); }
 .swatch-far { width: 8px; height: 8px; border-radius: 50%; background: var(--blue); box-shadow: 0 0 0 3px var(--ring); }
-/* wide screens: heading and list beside the map, centred on it as one block */
-@media (min-width: 1100px) {
-  .simple-layout {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.45fr); column-gap: clamp(48px, 5vw, 96px);
-    grid-template-areas: ". map" "head map" "tiers map" ". map"; grid-template-rows: 1fr auto auto 1fr;
-  }
-  .smap { min-width: 0; margin-bottom: 0; }
-  .simple-layout .section-head { margin-bottom: 36px; }
+/* the dotted map: three dots of the lit-up land, and pins for the rest */
+.clients-dotted .swatch-main {
+  width: 16px; height: 14px; border-radius: 0;
+  background:
+    radial-gradient(circle at 4px 3.5px, #01CDFE 2.5px, transparent 3px),
+    radial-gradient(circle at 12px 3.5px, #02A5EE 2.5px, transparent 3px),
+    radial-gradient(circle at 8px 10.5px, #0454BF 2.5px, transparent 3px);
 }
+.clients-dotted .swatch-region { border-radius: 50%; background: var(--blue); box-shadow: 0 0 0 3px var(--ring); }
+
+/* phones and tablets: the map across the page, the three levels side by side under it */
+@media (max-width: 1023.98px) {
+  .tiers { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: clamp(14px, 3vw, 24px); border-top: 0; }
+  .tier { padding-block: 12px 0; border-top: 2px solid var(--line-2); border-bottom: 0; }
+  .tier:first-child { border-top-color: var(--blue); }
+}
+@media (min-width: 640px) { .clients { --map-h: min(44svh, 460px); } }
+/* phones: narrow columns, so each level's bars sit over its words and its places are listed
+   plainly, one under the other; the section then stays close to one screen */
+@media (max-width: 639.98px) {
+  .clients { --pad: 32px; --map-h: min(30svh, 300px); }
+  .clients .sub { font-size: var(--text-base); }
+  .clients-layout { row-gap: 20px; }
+  .tier-head { display: block; }
+  .tier-level { flex-direction: column; align-items: flex-start; gap: 6px; line-height: 1.4; }
+  .tier-note { margin-top: 2px; line-height: 1.4; }
+  .tier-places { flex-direction: column; align-items: flex-start; gap: 4px; margin-top: 8px; }
+  .tier-places li { min-height: 0; padding: 0; border: 0; background: none; }
+  .tier-places .tier-more { padding: 0; line-height: 1.4; }
+}
+/* wide screens: heading and list beside the map, centred on it as one block, and the map as
+   tall as the screen allows under the header, up to 500px */
+@media (min-width: 1024px) {
+  .clients { --map-h: min(500px, 100svh - var(--header-h) - 2 * var(--pad)); }
+  .clients-layout {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); column-gap: clamp(40px, 5vw, 96px);
+    grid-template-areas: ". map" "head map" "tiers map" ". map"; grid-template-rows: 1fr auto auto 1fr;
+    row-gap: 0;
+  }
+  .clients-layout .section-head { margin-bottom: 28px; }
+}
+@media (min-width: 1280px) { .clients-layout { grid-template-columns: minmax(0, 1fr) minmax(0, 1.65fr); } }
 
 /* the floating switch between the two designs, shown while the section is on screen;
    dark on the light theme and light on the dark one */
@@ -711,10 +760,10 @@ html[dir="rtl"] .live-url { text-align: right; }
   transition: opacity .25s, transform .3s var(--ease), visibility 0s .3s;
 }
 .design-switch.show { opacity: 1; visibility: visible; transform: translate(-50%, 0); transition-delay: 0s; }
-.design-switch-label { padding-inline: 12px 6px; font-size: .875rem; color: color-mix(in srgb, var(--paper) 72%, transparent); white-space: nowrap; }
+.design-switch-label { padding-inline: 12px 6px; font-size: var(--text-xs); color: color-mix(in srgb, var(--paper) 72%, transparent); white-space: nowrap; }
 .design-switch button {
   min-height: 40px; padding: 0 16px; border-radius: 999px;
-  font-weight: 600; font-size: .9375rem; color: var(--paper); white-space: nowrap;
+  font-weight: 600; font-size: var(--text-sm); color: var(--paper); white-space: nowrap;
   transition: background-color .2s, color .2s;
 }
 .design-switch button:hover { background: color-mix(in srgb, var(--paper) 12%, transparent); }
@@ -731,7 +780,7 @@ html[dir="rtl"] .live-url { text-align: right; }
 .faq summary {
   display: flex; justify-content: space-between; align-items: center; gap: 16px;
   min-height: 44px; padding-block: 20px;
-  font-weight: 600; font-size: 1.0625rem; line-height: 1.4;
+  font-weight: 600; font-size: var(--text-md); line-height: 1.4;
   cursor: pointer; list-style: none; transition: color .2s;
 }
 .faq summary::-webkit-details-marker { display: none; }
@@ -750,14 +799,14 @@ html[dir="rtl"] .live-url { text-align: right; }
 .contact { background: var(--wash); border-top: 0; }
 .contact-grid { display: grid; gap: 40px; }
 .contact-intro h2 { max-width: 14em; }
-.asks-title { margin-top: 32px; font-size: .9375rem; font-weight: 600; line-height: 1.4; letter-spacing: 0; color: var(--ink); }
+.asks-title { margin-top: 32px; font-size: var(--text-sm); font-weight: 600; line-height: 1.4; letter-spacing: 0; color: var(--ink); }
 .asks { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
 .pick { display: inline-flex; border-radius: 999px; }
 .pick:focus-visible { outline: none; }
 .pick span {
   display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 16px;
   border: 1px solid var(--line-strong); border-radius: 999px; background: var(--paper);
-  font-weight: 500; font-size: .9375rem; color: var(--ink-2);
+  font-weight: 500; font-size: var(--text-sm); color: var(--ink-2);
   transition: border-color .2s, background-color .2s, color .2s;
 }
 .pick .ico { width: 18px; height: 18px; color: var(--blue); }
@@ -773,9 +822,9 @@ html[dir="rtl"] .live-url { text-align: right; }
 .reach-ico { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 12px; background: var(--blue-tint); color: var(--blue); }
 .reach-ico .ico { width: 24px; height: 24px; }
 .reach-ico-wa { background: #25D366; color: #fff; }
-.reach-item h3 { font-size: 1.125rem; }
+.reach-item h3 { font-size: var(--text-md); }
 .reach-item p { color: var(--muted); }
-.reach-item .reach-num { margin-top: 4px; font-size: 1.375rem; font-weight: 600; color: var(--heading); font-variant-numeric: tabular-nums; }
+.reach-item .reach-num { margin-top: 4px; font-size: var(--text-xl); font-weight: 700; color: var(--heading); font-variant-numeric: tabular-nums; }
 html[dir="rtl"] .reach-item .reach-num { text-align: right; }
 .reach-meta { display: grid; gap: 10px; padding-block: 18px 22px; color: var(--muted); }
 .reach-meta li { display: flex; align-items: center; gap: 10px; }
@@ -794,11 +843,11 @@ html[dir="rtl"] .reach-item .reach-num { text-align: right; }
 .footer { padding-block: 56px 28px; border-top: 1px solid var(--line); }
 .foot-grid { display: grid; gap: 36px; }
 .foot-brand p { margin-top: 16px; max-width: 22em; color: var(--muted); }
-.foot-col h2 { margin-bottom: 10px; font-size: .9375rem; font-weight: 600; letter-spacing: 0; line-height: 1.4; }
+.foot-col h2 { margin-bottom: 10px; font-size: var(--text-sm); font-weight: 600; letter-spacing: 0; line-height: 1.4; }
 .foot-col a, .foot-col span { display: block; padding-block: 9px; color: var(--muted); transition: color .2s; } /* 44px touch rows */
 .foot-col a:hover { color: var(--blue); }
 html[dir="rtl"] .foot-col .ltr { text-align: right; } /* LTR numbers still sit on the RTL edge */
-.foot-bottom { margin-top: 44px; padding-top: 20px; border-top: 1px solid var(--line); font-size: .875rem; color: var(--muted); }
+.foot-bottom { margin-top: 44px; padding-top: 20px; border-top: 1px solid var(--line); font-size: var(--text-xs); color: var(--muted); }
 @media (min-width: 640px) { .foot-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (min-width: 960px) { .foot-grid { grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 40px; } }
 

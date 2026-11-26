@@ -1,7 +1,7 @@
 import { useLang } from '../i18n/LanguageContext.jsx';
 import { SHAPES } from '../data/worldShapes.js';
-import { PLACES, TIERS } from '../data/clients.js';
-import { ClientsHead, equalEarth, Level, Pin } from './ClientsParts.jsx';
+import { PLACES } from '../data/clients.js';
+import { ClientsHead, equalEarth, Pin, Tiers } from './ClientsParts.jsx';
 
 // The simple design: a plain map from Brazil to the Gulf with no borders drawn. Egypt and
 // Saudi Arabia are filled deep blue, Jordan and the UAE light blue, and the countries further
@@ -18,16 +18,19 @@ function spot(lon, lat) {
   };
 }
 
+// the map's width over its height: CSS sizes the map from the screen height with it
+const FRAME = { '--ratio': String(SHAPES.width / SHAPES.height) };
+
 export default function ClientsSimple() {
   const { t } = useLang();
 
   // phones: heading, map, list; wide screens: heading and list beside the map
   return (
-    <div className="container simple-layout">
+    <div className="container clients-layout">
       <ClientsHead />
 
       {/* The list says the same in words, so screen readers get the summary only */}
-      <div className="smap" role="img" aria-label={t('clients.mapAlt')}>
+      <div className="smap" role="img" aria-label={t('clients.mapAlt')} style={FRAME}>
         <svg viewBox={`0 0 ${SHAPES.width} ${SHAPES.height}`} aria-hidden="true" focusable="false">
           <path className="smap-land" d={SHAPES.land} />
           <path className="smap-region" d={SHAPES.jo + SHAPES.ae} />
@@ -38,27 +41,7 @@ export default function ClientsSimple() {
         ))}
       </div>
 
-      {/* most clients first */}
-      <ol className="tiers">
-        {TIERS.map(({ id, level }) => (
-          <li className="tier" key={id}>
-            <p className="tier-level">
-              <Level n={level} />
-              {t(`clients.${id}.level`)}
-            </p>
-            <ul className="tier-places">
-              {PLACES.filter((p) => p.tier === id).map((p) => (
-                <li key={p.id}>
-                  <i className={`swatch swatch-${id}`} aria-hidden="true" />
-                  {t(`place.${p.id}`)}
-                </li>
-              ))}
-              {id === 'region' ? <li className="tier-more">{t('clients.more')}</li> : null}
-            </ul>
-            {id === 'main' ? <p className="tier-note">{t('clients.hq')}</p> : null}
-          </li>
-        ))}
-      </ol>
+      <Tiers />
     </div>
   );
 }

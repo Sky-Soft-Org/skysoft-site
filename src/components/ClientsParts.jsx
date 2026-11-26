@@ -1,4 +1,5 @@
 import { useLang } from '../i18n/LanguageContext.jsx';
+import { PLACES, TIERS } from '../data/clients.js';
 
 // Pieces both designs of the clients section share
 
@@ -41,11 +42,41 @@ export function Level({ n }) {
   );
 }
 
-// A place's name on the map; the dot is drawn by CSS (::before), except for 'main' places
-export function Pin({ place, style, ref }) {
+// The places from most clients to fewest. Each swatch matches how the place looks on the
+// map in use; the section's class (clients-simple or clients-dotted) picks the swatch style.
+export function Tiers() {
   const { t } = useLang();
   return (
-    <span ref={ref} className={`pin pin-${place.tier} at-${place.label} sm-${place.sm}`} style={style}>
+    <ol className="tiers">
+      {TIERS.map(({ id, level }) => (
+        <li className="tier" key={id}>
+          <div className="tier-head">
+            <p className="tier-level">
+              <Level n={level} />
+              {t(`clients.${id}.level`)}
+            </p>
+            {id === 'main' ? <p className="tier-note">{t('clients.hq')}</p> : null}
+          </div>
+          <ul className="tier-places">
+            {PLACES.filter((p) => p.tier === id).map((p) => (
+              <li key={p.id}>
+                <i className={`swatch swatch-${id}`} aria-hidden="true" />
+                {t(`place.${p.id}`)}
+              </li>
+            ))}
+            {id === 'region' ? <li className="tier-more">{t('clients.more')}</li> : null}
+          </ul>
+        </li>
+      ))}
+    </ol>
+  );
+}
+
+// A place's name on the map; the dot is drawn by CSS (::before), except for 'main' places
+export function Pin({ place, style }) {
+  const { t } = useLang();
+  return (
+    <span className={`pin pin-${place.tier} at-${place.label} sm-${place.sm}`} style={style}>
       <span className="pin-text">{t(`place.${place.id}`)}</span>
     </span>
   );

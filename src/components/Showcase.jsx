@@ -45,6 +45,13 @@ function Shot({ shot, frameRatio, alt, className }) {
   );
 }
 
+// Which kind of screens a product shows; each has its own shape (see .live-stage-* in styles.css)
+function stageKind(item) {
+  if (item.device === 'desktop') return 'app'; // a Windows window
+  if (item.device === 'phone-landscape') return 'landscape'; // a phone held sideways
+  return item.phone ? 'browser' : 'solo'; // a browser with a phone in front of it, or alone
+}
+
 export default function Showcase() {
   const { t } = useLang();
   const [active, setActive] = useState(0);
@@ -160,7 +167,7 @@ export default function Showcase() {
             <div className="live-actions">
               {item.url ? (
                 <>
-                  <a className="btn btn-light" href={item.url} target="_blank" rel="noopener noreferrer">
+                  <a className="btn btn-primary" href={item.url} target="_blank" rel="noopener noreferrer">
                     {t(item.open)}
                     <Icon name="external" />
                     <span className="visually-hidden">{t('label.newTab')}</span>
@@ -176,7 +183,7 @@ export default function Showcase() {
                 </>
               ) : (
                 <a
-                  className="btn btn-light"
+                  className="btn btn-primary"
                   href={whatsappUrl(t('wa.ask').replace('{x}', name))}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -190,7 +197,7 @@ export default function Showcase() {
           </div>
 
           <div
-            className={`live-stage${item.device || !item.phone ? ' live-stage-solo' : ''}`}
+            className={`live-stage live-stage-${stageKind(item)}`}
             onPointerEnter={() => setHeld(true)}
             onPointerLeave={() => setHeld(false)}
           >

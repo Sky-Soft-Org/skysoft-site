@@ -1,10 +1,10 @@
 import { useLang } from '../i18n/LanguageContext.jsx';
 import { WORLD } from '../data/worldDots.js';
-import { HQ, PHONE_VIEW, PLACES, TIERS } from '../data/clients.js';
-import { ClientsHead, equalEarth, Level, Pin } from './ClientsParts.jsx';
+import { HQ, PHONE_VIEW, PLACES } from '../data/clients.js';
+import { ClientsHead, equalEarth, Pin, Tiers } from './ClientsParts.jsx';
 
 // The dotted design: a dotted world map with Egypt and Saudi Arabia lit up,
-// and a key under it with one column per tier
+// beside the places from most clients to fewest
 
 // longitude and latitude → viewBox units of the map
 function project(lon, lat) {
@@ -43,27 +43,29 @@ VIEW.h = Math.max(...ys) + WORLD.step - VIEW.y;
 const [HQ_X, HQ_Y] = project(HQ.lon, HQ.lat);
 const pct = (v) => `${(v * 100).toFixed(3)}%`;
 
-// Phones zoom in on PHONE_VIEW: the world layer grows and slides until that box fills the frame
+// The map's width over its height (CSS sizes the map from the screen height with it).
+// Phones zoom in on PHONE_VIEW: the world layer grows and slides until that box fills the frame.
 const [westX] = project(PHONE_VIEW.west, 0);
 const [eastX] = project(PHONE_VIEW.east, 0);
 const [, northY] = project(0, PHONE_VIEW.north);
 const [, southY] = project(0, PHONE_VIEW.south);
-const PHONE_FRAME = {
+const FRAME = {
+  '--ratio': String(VIEW.w / VIEW.h),
   '--zoom': String(VIEW.w / (eastX - westX)),
   '--shift-x': pct(-(westX - VIEW.x) / VIEW.w),
   '--shift-y': pct(-(northY - VIEW.y) / VIEW.h),
-  '--ratio': String((eastX - westX) / (southY - northY)),
+  '--phone-ratio': String((eastX - westX) / (southY - northY)),
 };
 
 export default function ClientsDotted() {
   const { t } = useLang();
 
   return (
-    <div className="container">
+    <div className="container clients-layout">
       <ClientsHead />
 
-      {/* The key under the map says the same in words, so screen readers get the summary only */}
-      <div className="map" role="img" aria-label={t('clients.mapAlt')} style={PHONE_FRAME}>
+      {/* The list beside the map says the same in words, so screen readers get the summary only */}
+      <div className="map" role="img" aria-label={t('clients.mapAlt')} style={FRAME}>
         <div className="map-world">
           <svg viewBox={`${VIEW.x} ${VIEW.y} ${VIEW.w} ${VIEW.h}`} aria-hidden="true" focusable="false">
             <defs>
@@ -83,29 +85,7 @@ export default function ClientsDotted() {
         </div>
       </div>
 
-      <div className="key">
-        {TIERS.map(({ id, level }) => (
-          <div className="key-group" key={id}>
-            <h3>
-              <i className={`key-mark key-${id}`} aria-hidden="true" />
-              {t(`clients.${id}`)}
-            </h3>
-            <p className="key-level">
-              <Level n={level} />
-              {t(`clients.${id}.level`)}
-            </p>
-            <ul>
-              {PLACES.filter((p) => p.tier === id).map((p) => (
-                <li key={p.id}>
-                  <b>{t(`place.${p.id}`)}</b>
-                  {p.id === 'eg' ? <span>{t('clients.hq')}</span> : null}
-                </li>
-              ))}
-              {id === 'region' ? <li className="key-more">{t('clients.more')}</li> : null}
-            </ul>
-          </div>
-        ))}
-      </div>
+      <Tiers />
     </div>
   );
 }
