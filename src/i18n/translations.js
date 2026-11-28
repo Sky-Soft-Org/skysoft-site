@@ -70,6 +70,8 @@ export const translations = {
     'live.erp.desc': "The main Sky Soft system on Windows: accounts, invoices, warehouses, manufacturing, restaurants and reports from one desktop workspace, with favourites and full user permissions.",
     'label.live': 'Live systems',
     'label.newTab': '(opens in a new tab)',
+    'store.play.pre': 'Get it on',
+    'store.apple.pre': 'Download on the',
 
     'why.title': "Why Sky Soft",
     'w1.h': 'Arabic-first, fully bilingual',
@@ -224,6 +226,8 @@ export const translations = {
     'live.erp.desc': "النظام الرئيسي لسكاي سوفت على ويندوز: الحسابات والفواتير والمخازن والتصنيع والمطاعم والتقارير من مساحة عمل واحدة على سطح المكتب، مع المفضلة وصلاحيات المستخدمين.",
     'label.live': 'الأنظمة',
     'label.newTab': '(يفتح في صفحة جديدة)',
+    'store.play.pre': 'احصل عليه من',
+    'store.apple.pre': 'حمّله من',
 
     'why.title': "لماذا سكاي سوفت",
     'w1.h': 'عربي أولاً وثنائي اللغة',

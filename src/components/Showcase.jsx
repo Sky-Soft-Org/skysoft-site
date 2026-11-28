@@ -165,7 +165,22 @@ export default function Showcase() {
             {item.url && <p className="live-url ltr">{item.url.replace('https://', '')}</p>}
             <p className="live-desc">{t(item.desc)}</p>
             <div className="live-actions">
-              {item.url ? (
+              {item.stores ? (
+                <>
+                  <div className="store-badges">
+                    <StoreBadge href={item.stores.play} icon="googleplay" pre={t('store.play.pre')} name="Google Play" />
+                    <StoreBadge href={item.stores.apple} icon="apple" pre={t('store.apple.pre')} name="App Store" />
+                  </div>
+                  <a
+                    className="live-ask"
+                    href={whatsappUrl(t('wa.ask').replace('{x}', name))}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {t('live.ask')}
+                  </a>
+                </>
+              ) : item.url ? (
                 <>
                   <a className="btn btn-primary" href={item.url} target="_blank" rel="noopener noreferrer">
                     {t(item.open)}
@@ -238,5 +253,20 @@ export default function Showcase() {
         </div>
       </div>
     </section>
+  );
+}
+
+// "Get it on Google Play" / "Download on the App Store" button
+function StoreBadge({ href, icon, pre, name }) {
+  const { t } = useLang();
+  return (
+    <a className="store-badge" href={href} target="_blank" rel="noopener noreferrer">
+      <Icon name={icon} />
+      <span className="store-badge-text">
+        <small>{pre}</small>
+        <span className="ltr">{name}</span>
+      </span>
+      <span className="visually-hidden">{t('label.newTab')}</span>
+    </a>
   );
 }

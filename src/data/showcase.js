@@ -78,8 +78,12 @@ export const SHOWCASE = [
   },
   {
     id: 'sales', name: 'sales.title', kind: 'live.sales.kind', desc: 'live.sales.desc', open: 'live.ask',
-    // Landscape phone app — no public demo URL yet; CTA opens WhatsApp
+    // Landscape phone app — no public demo URL; the CTAs are its store pages
     device: 'phone-landscape',
+    stores: {
+      play: 'https://play.google.com/store/apps/details?id=com.sky.smartsales',
+      apple: 'https://apps.apple.com/eg/app/smart-sales/id1617817529',
+    },
     seconds: 10.5,
     // Invoices hub, then reports hub, then a sales invoice in progress
     phone: { src: salesDesktopInvoices, w: 1024, h: 526, frames: [salesDesktopReports, salesDesktopInvoice] },

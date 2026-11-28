@@ -464,6 +464,24 @@ html[dir="rtl"] .live-url { text-align: right; }
 }
 .live-ask:hover { color: var(--blue-deep); text-decoration-thickness: 2px; }
 
+/* App store buttons, in the stores' own black-badge style */
+.store-badges { display: flex; flex-wrap: wrap; gap: 12px; }
+.store-badge {
+  display: inline-flex; align-items: center; gap: 10px;
+  min-height: 52px; padding: 8px 18px 8px 16px; border-radius: 12px;
+  background: #000; color: #fff; border: 1px solid #000;
+  transition: transform .2s, box-shadow .2s, border-color .2s;
+}
+.store-badge:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgb(0 0 0 / .25); }
+.store-badge:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
+:root[data-theme="dark"] .store-badge { border-color: rgb(255 255 255 / .35); }
+:root[data-theme="dark"] .store-badge:hover { border-color: rgb(255 255 255 / .6); }
+.store-badge .ico { width: 24px; height: 24px; flex: none; }
+.store-badge-text { display: flex; flex-direction: column; line-height: 1.1; text-align: start; }
+.store-badge-text small { font-size: 11px; opacity: .85; }
+.store-badge-text .ltr { font-size: 18px; font-weight: 600; letter-spacing: -.01em; }
+@media (prefers-reduced-motion: reduce) { .store-badge { transition: none; } .store-badge:hover { transform: none; } }
+
 /* The screens: a browser window with a phone standing in front of its corner, or one device
    alone. Each kind has its own shape, so from tablets up its width is worked out from the height
    it may take (--stage-h), as (height - fixed part) x ratio:
